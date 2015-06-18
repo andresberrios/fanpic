@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
+# For Heroku support
+gem 'rails_12factor', group: :production
+
+
 # Make sure we use an updated bundler
 gem 'bundler', '>= 1.8.4'
 # Make sure we use an updated sprockets
