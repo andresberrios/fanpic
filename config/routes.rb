@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'panel#index'
+
+  root to: redirect('/panel')
+  scope 'panel' do
+    get '(*angular_route)', to: 'panel#index', constraints: lambda {|req| req.format == 'text/html'}
+  end
+
+  namespace 'api' do
+    
+  end
 end

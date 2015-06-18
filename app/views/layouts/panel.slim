@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title Fanpic
+    == stylesheet_link_tag 'panel', media: 'all'
+    == javascript_include_tag 'panel'
+    == csrf_meta_tags
+  body
+    == yield
