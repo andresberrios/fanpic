@@ -1,0 +1,25 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed type="button" ng-click="isExpanded = !isExpanded"
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand
+        | Fanpic
+    .collapse.navbar-collapse collapse="isExpanded"
+      ul.nav.navbar-nav
+        li ui-sref-active="active"
+          a ui-sref="main.campaigns"
+            | Campaigns
+      .navbar-right
+        p.navbar-text
+          span[ng-if="ctrl.currentUser"]
+            | Welcome, {{ctrl.currentUser.email}}
+          span[ng-if="!ctrl.currentUser"]
+            | Please authenticate
+        button.btn.btn-default.navbar-btn[ng-click="ctrl.Auth.logout()" ng-if="ctrl.currentUser"]
+          i.fa.fa-sign-out
+          |  Log out 

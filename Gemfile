@@ -8,8 +8,9 @@ gem 'rails_12factor', group: :production
 
 # Make sure we use an updated bundler
 gem 'bundler', '>= 1.8.4'
-# Make sure we use an updated sprockets
+# Make sure we use an older sprockets to support angular-rails-templates
 gem 'sprockets-rails', '>= 2.1.4'
+gem 'sprockets', '< 3.0.0'
 
 # To bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -34,21 +35,6 @@ gem 'will_paginate', '~> 3.0.6'
 # Responders gem to DRY up controllers
 gem 'responders'
 
-# AngularJS CSFR protection support
-gem 'angular_rails_csrf'
-# Compile AngularJS templates
-gem 'angular-rails-templates'
-
-group :assets do
-  # Use SCSS for stylesheets
-  gem 'sass-rails', '~> 5.0'
-  # Use Uglifier as compressor for JavaScript assets
-  gem 'uglifier', '>= 1.3.0'
-  # Use CoffeeScript for .coffee assets and views
-  gem 'coffee-rails', '~> 4.1.0'
-end
-
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -65,6 +51,21 @@ end
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', groups: [:development, :test]
+
+
+group :assets do
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '~> 5.0'
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+  # Use CoffeeScript for .coffee assets and views
+  gem 'coffee-rails', '~> 4.1.0'
+end
+
+# AngularJS CSFR protection support
+gem 'angular_rails_csrf'
+# Compile AngularJS templates
+gem 'angular-rails-templates'
 
 # Assets
 gem 'jquery-rails'

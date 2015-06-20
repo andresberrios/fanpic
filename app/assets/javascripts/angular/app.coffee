@@ -7,10 +7,15 @@ angular.module 'App', [
   'ui.router'
 
   'templates'
+  'App.states'
+
+  'App.main'
+  'App.users'
 ]
 .config [
-  '$stateProvider', '$urlRouterProvider', 'appStates'
-  ($stateProvider, $urlRouterProvider, appStates) ->
+  '$locationProvider', '$stateProvider', '$urlRouterProvider', 'appStates'
+  ($locationProvider, $stateProvider, $urlRouterProvider, appStates) ->
+    $locationProvider.html5Mode(yes).hashPrefix('!')
     for name, config of appStates
       $stateProvider.state name, config
     $urlRouterProvider.otherwise '/'
