@@ -8,5 +8,5 @@ angular.module 'App.main', []
         @currentUser = user
       $scope.$on 'devise:logout', (event, oldUser) =>
         delete @currentUser
-        $state.go 'admin.login'
+        $state.go 'main.login'
 ]

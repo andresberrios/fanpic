@@ -1,10 +1,10 @@
 
 angular.module 'App.users.login', []
-.controller 'UserLoginCtrl', ['Auth', '$location'
+.controller 'UserLoginCtrl', ['Auth', '$state'
   class UserLoginCtrl
-    constructor: (Auth, $location) ->
+    constructor: (Auth, $state) ->
       Auth.currentUser().then ->
-        $location.url '/'
+        $state.go 'main.campaigns'
 ]
 .controller 'UserLoginModalCtrl', ['Auth'
   class UserLoginModalCtrl
@@ -17,7 +17,7 @@ angular.module 'App.users.login', []
         password: password
       .then $close
       .catch (error) =>
-        @error = error.data.error ? yes
+        @error = error.data?.error ? yes
       .finally =>
         @loading = no
 ]

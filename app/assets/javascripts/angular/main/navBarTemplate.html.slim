@@ -20,6 +20,6 @@ nav.navbar.navbar-default
             | Welcome, {{ctrl.currentUser.email}}
           span[ng-if="!ctrl.currentUser"]
             | Please authenticate
-        button.btn.btn-default.navbar-btn[ng-click="ctrl.Auth.logout()" ng-if="ctrl.currentUser"]
+        button.btn.btn-default.navbar-btn ng-click="ctrl.Auth.logout()" ng-if="ctrl.currentUser"
           i.fa.fa-sign-out
           |  Log out 

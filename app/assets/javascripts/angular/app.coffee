@@ -11,12 +11,13 @@ angular.module 'App', [
 
   'App.main'
   'App.users'
+  'App.campaigns'
 ]
 .config [
   '$locationProvider', '$stateProvider', '$urlRouterProvider', 'appStates'
   ($locationProvider, $stateProvider, $urlRouterProvider, appStates) ->
-    $locationProvider.html5Mode(yes).hashPrefix('!')
+    $locationProvider.html5Mode(yes).hashPrefix '!'
     for name, config of appStates
       $stateProvider.state name, config
-    $urlRouterProvider.otherwise '/'
+    $urlRouterProvider.otherwise '/not-found'
 ]

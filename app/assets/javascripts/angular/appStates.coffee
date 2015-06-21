@@ -12,5 +12,6 @@ angular.module 'App.states', []
     url: ''
     controller: ['$state', ($state) -> $state.go 'main.login', {}, location: 'replace']
   'main.campaigns':
-    url: 'campaigns'
+    url: '/campaigns'
     controller: 'CampaignsCtrl as ctrl'
+    templateUrl: 'angular/campaigns/campaignsTemplate.html'

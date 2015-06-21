@@ -29,6 +29,8 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 # Manage application configuration
 gem 'figaro'
+# Manage seed data
+gem 'seed-fu'
 
 # Add pagination to models
 gem 'will_paginate', '~> 3.0.6'
