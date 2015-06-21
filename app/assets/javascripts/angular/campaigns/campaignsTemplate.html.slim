@@ -1,1 +1,9 @@
-h1 Campaigns
+.container
+  h1.text-center Campaigns
+  button.btn.btn-success ui-sref="main.editCampaign({campaignId: 'new'})" New Campaign
+  ul
+    li ng-repeat="campaign in ctrl.campaigns"
+      .text-center
+        img ng-src="{{campaign.image_url}}"
+        h2
+          | {{campaign.name}}

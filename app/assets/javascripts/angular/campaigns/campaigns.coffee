@@ -1,5 +1,9 @@
 angular.module 'App.campaigns', []
-.controller 'CampaignsCtrl', [
+.controller 'CampaignsCtrl', ['campaigns'
   class CampaignsCtrl
-    constructor: ->
+    constructor: (@campaigns) ->
+]
+.controller 'CampaignEditCtrl', ['campaign'
+  class CampaignsCtrl
+    constructor: (@campaign) ->
 ]

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
 
   namespace 'api' do
-
+    resources :campaigns, except: [:new, :edit]
   end
 end

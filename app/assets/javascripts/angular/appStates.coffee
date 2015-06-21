@@ -10,8 +10,21 @@ angular.module 'App.states', []
     controller: 'UserLoginCtrl'
   'main.default':
     url: ''
-    controller: ['$state', ($state) -> $state.go 'main.login', {}, location: 'replace']
+    controller: ['$state', ($state) -> $state.go 'main.campaigns', {}, location: 'replace']
   'main.campaigns':
     url: '/campaigns'
     controller: 'CampaignsCtrl as ctrl'
     templateUrl: 'angular/campaigns/campaignsTemplate.html'
+    resolve:
+      campaigns: ['Campaign', (Campaign) -> Campaign.query()]
+  'main.editCampaign':
+    url: '/campaigns/:campaignId'
+    controller: 'CampaignEditCtrl as ctrl'
+    templateUrl: 'angular/campaigns/campaignEditTemplate.html'
+    resolve:
+      campaign: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
+        if $stateParams.campaignId is 'new'
+          new Campaign()
+        else
+          Campaign.get $stateParams.campaignId
+      ]
