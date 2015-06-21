@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :campaigns
+
   ROLES = %w(visitor advertiser admin)
 
   validates_inclusion_of :role, in: ROLES
