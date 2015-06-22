@@ -1,9 +1,15 @@
 .container
-  h1.text-center Campaigns
-  button.btn.btn-success ui-sref="main.editCampaign({campaignId: 'new'})" New Campaign
-  ul
-    li ng-repeat="campaign in ctrl.campaigns"
-      .text-center
-        img ng-src="{{campaign.image_url}}"
-        h2
-          | {{campaign.name}}
+  h1.text-center
+    ' Campaigns
+    button.btn.btn-success ui-sref="main.campaignEdit({campaignId: 'new'})" New Campaign
+  ul.list-unstyled.row
+    li.col-sm-3 ng-repeat="campaign in ctrl.campaigns"
+      .campaign-block.text-center
+        a ui-sref="main.campaignShow({campaignId: campaign.id})"
+          div
+            img.img-responsive ng-src="{{campaign.image_url}}"
+          h2
+            | {{campaign.name}}
+            br
+            small
+              | {{'#' + campaign.hashtag}}

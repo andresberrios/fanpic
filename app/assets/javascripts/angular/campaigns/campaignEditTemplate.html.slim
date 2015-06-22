@@ -1,3 +1,27 @@
 .container
   h1.text-center ng-if="ctrl.campaign.id" Edit Campaign
-  h1.text-center ng-if="!ctrl.campaign.id" Edit Campaign
+  h1.text-center ng-if="!ctrl.campaign.id" New Campaign
+  .row
+    .col-sm-4.text-center
+      img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+    .col-sm-8
+      form novalidate=""
+        .form-group
+          label for="name" Name
+          input#name.form-control ng-model="ctrl.campaign.name"
+        .form-group
+          label for="description" Description
+          textarea#description.form-control ng-model="ctrl.campaign.description"
+        .form-group
+          label for="image_url" Image URL
+          input#image_url.form-control ng-model="ctrl.campaign.image_url"
+        .form-group
+          label for="requirements" Requirements
+          textarea#requirements.form-control ng-model="ctrl.campaign.requirements"
+        .form-group
+          label for="hashtag" Hashtag
+          input#hashtag.form-control ng-model="ctrl.campaign.hashtag"
+      .text-center
+        button.btn.btn-success ng-click="ctrl.saveCampaign(ctrl.campaign)"
+          i.fa.fa-floppy-o
+          |  Save

@@ -8,7 +8,7 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :advertiser
-      # can :read, Campaign, user_id: user.id
+      can :manage, Campaign, user_id: user.id
     end
   end
 end

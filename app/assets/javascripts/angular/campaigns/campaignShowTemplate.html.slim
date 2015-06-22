@@ -1,0 +1,22 @@
+.container
+  h1.text-center
+    | {{ctrl.campaign.name}}
+    br
+    small
+      | {{'#' + ctrl.campaign.hashtag}}
+  .row
+    .col-sm-4.text-center
+      img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+    .col-sm-8
+      h2 Description
+      p
+        | {{ctrl.campaign.description}}
+      h2 Requirements
+      p
+        | {{ctrl.campaign.requirements}}
+  h2.text-center
+    ' Entries in
+    strong
+      | {{'#' + ctrl.campaign.hashtag}}
+  ul.list-unstyled
+    li ng-repeat="hola in ctrl.holas"

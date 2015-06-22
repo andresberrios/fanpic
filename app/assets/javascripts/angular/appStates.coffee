@@ -17,8 +17,16 @@ angular.module 'App.states', []
     templateUrl: 'angular/campaigns/campaignsTemplate.html'
     resolve:
       campaigns: ['Campaign', (Campaign) -> Campaign.query()]
-  'main.editCampaign':
+  'main.campaignShow':
     url: '/campaigns/:campaignId'
+    controller: 'CampaignShowCtrl as ctrl'
+    templateUrl: 'angular/campaigns/campaignShowTemplate.html'
+    resolve:
+      campaign: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
+        Campaign.get id: $stateParams.campaignId
+      ]
+  'main.campaignEdit':
+    url: '/campaigns/:campaignId/edit'
     controller: 'CampaignEditCtrl as ctrl'
     templateUrl: 'angular/campaigns/campaignEditTemplate.html'
     resolve:
@@ -26,5 +34,5 @@ angular.module 'App.states', []
         if $stateParams.campaignId is 'new'
           new Campaign()
         else
-          Campaign.get $stateParams.campaignId
+          Campaign.get id: $stateParams.campaignId
       ]
