@@ -15,6 +15,7 @@ class Api::CampaignsController < ApplicationController
   end
 
   def create
+    @campaign.user = current_user
     @campaign.save
     respond_with @campaign
   end
@@ -27,6 +28,15 @@ class Api::CampaignsController < ApplicationController
   def destroy
     @campaign.destroy
     respond_with @campaign
+  end
+
+  def entries
+    if @campaign.hashtag
+      entries = Instagram.client.tag_recent_media @campaign.hashtag
+      respond_with entries
+    else
+      respond_with []
+    end
   end
 
 

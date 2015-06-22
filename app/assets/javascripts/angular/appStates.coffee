@@ -25,6 +25,10 @@ angular.module 'App.states', []
       campaign: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
         Campaign.get id: $stateParams.campaignId
       ]
+      entries: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
+        Campaign.entries id: $stateParams.campaignId
+      ]
+      user: ['currentUser', (currentUser) -> currentUser()]
   'main.campaignEdit':
     url: '/campaigns/:campaignId/edit'
     controller: 'CampaignEditCtrl as ctrl'

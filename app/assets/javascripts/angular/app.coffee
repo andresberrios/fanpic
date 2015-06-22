@@ -9,6 +9,7 @@ angular.module 'App', [
   'templates'
   'App.states'
   'App.models'
+  'App.common'
 
   'App.main'
   'App.users'

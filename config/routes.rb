@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
 
   scope '/api', module: 'api' do
-    resources :campaigns, except: [:new, :edit]
+    resources :campaigns, except: [:new, :edit] do
+      get 'entries', on: :member
+    end
   end
 end

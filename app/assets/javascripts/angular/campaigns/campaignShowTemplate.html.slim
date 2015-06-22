@@ -1,9 +1,14 @@
-.container
+.container ab-loading="!ctrl.campaign.$resolved"
   h1.text-center
     | {{ctrl.campaign.name}}
     br
     small
       | {{'#' + ctrl.campaign.hashtag}}
+  .text-center
+    button.btn.btn-primary[
+      ng-if="ctrl.campaign.user_id == ctrl.user.id"
+      ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
+      | Edit Campaign
   .row
     .col-sm-4.text-center
       img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
@@ -18,5 +23,9 @@
     ' Entries in
     strong
       | {{'#' + ctrl.campaign.hashtag}}
-  ul.list-unstyled
-    li ng-repeat="hola in ctrl.holas"
+  div ab-loading="!ctrl.entries.$resolved"
+    ul.list-unstyled.row
+      li.col-sm-3 ng-repeat="entry in ctrl.entries"
+        img.img-thumbnail ng-src="{{entry.images.low_resolution.url}}"
+        p
+          | {{entry.caption.text}}

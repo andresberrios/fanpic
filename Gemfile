@@ -22,6 +22,10 @@ gem 'thin', require: false
 gem 'rack-protection'
 
 
+# Instagram API
+gem 'instagram'
+
+
 # Use Slim for templates
 gem 'slim-rails'
 # User Auth

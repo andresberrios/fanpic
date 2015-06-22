@@ -4,10 +4,14 @@ app_host: localhost
 app_port: '3000'
 smtp_url: plain://196719c2811286cae:5429b3ab903bae@mailtrap.io:2525/mailtrap.io
 default_email: hello@fanpic.com
+instagram_client_id: xxxxxxxxxxxxxxxxxx
+instagram_client_secret: xxxxxxxxxxxxxxxxxx
 
 production:
   app_protocol: http
   app_host: fanpic.herokuapp.com
   app_port: '80'
-  smtp_url: plain://fanpic.app%40gmail.com:appfanpicpass@smtp.gmail.com:587/smtp.gmail.com
+  smtp_url: plain://fanpic.app%40gmail.com:xxxxx@smtp.gmail.com:587/smtp.gmail.com
   default_email: hello@fanpic.com
+  instagram_client_id: xxxxxxxxxxxxxxxxxx
+  instagram_client_secret: xxxxxxxxxxxxxxxxxx
