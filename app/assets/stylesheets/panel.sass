@@ -23,18 +23,26 @@
 
 .campaign-show
   .entries
+    @include make-row(15)
     &:after
       content: ''
       display: block
       clear: both
     .entry
-      width: 200px
-      float: left
-      background-color: #f3e4d9
-      .details
-        padding: 0 5px
-        padding-top: 5px
-      .likes
-        font-weight: bold
-        .fa-heart
-          color: red
+      @include make-sm-column(3, 15px)
+      @media (max-width: $screen-xs-max)
+        width: 100%
+      margin-bottom: 15px
+      .entry-content
+        background-color: #f3e4d9
+        img
+          max-width: 100%
+          height: auto
+        .details
+          padding: 5px
+          .likes
+            font-weight: bold
+            .fa-heart
+              color: red
+          p
+            margin-bottom: 0

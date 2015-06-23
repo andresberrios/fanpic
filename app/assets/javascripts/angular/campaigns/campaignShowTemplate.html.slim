@@ -24,13 +24,14 @@
     strong
       | {{'#' + ctrl.campaign.hashtag}}
   div ab-loading="!ctrl.entries.$resolved"
-    .entries ab-masonry=""
+    .entries ab-masonry="" items="ctrl.entries"
       .entry ng-repeat="entry in ctrl.entries"
-        .text-center
-          img.img-responsive ng-src="{{entry.images.low_resolution.url}}"
-        .details
-          .likes
-            i.fa.fa-heart
-            |  {{entry.likes.count}} likes
-          p
-            | {{entry.caption.text}}
+        .entry-content
+          .text-center
+            img ng-src="{{entry.images.low_resolution.url}}"
+          .details
+            .likes
+              i.fa.fa-heart
+              |  {{entry.likes.count}} likes
+            p
+              | {{entry.caption.text}}
