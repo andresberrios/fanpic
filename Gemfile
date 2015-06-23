@@ -87,4 +87,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-bootstrap'
   gem 'rails-assets-angular-devise'
   gem 'rails-assets-angular-ui-router'
+  gem 'rails-assets-masonry'
+  gem 'rails-assets-imagesloaded'
 end

@@ -7,15 +7,34 @@
 @import "font-awesome"
 
 
-.campaign-block
-  border: solid 1px lightgray
-  img
-    width: 100%
-  h2
-    margin-top: 6px
-    font-size: 160%
-    transition: color 0.6s
-  a:hover
-    text-decoration: none
+.campaigns
+  .campaign-block
+    border: solid 1px lightgray
+    img
+      width: 100%
     h2
-      color: $link-hover-color
+      margin-top: 6px
+      font-size: 160%
+      transition: color 0.6s
+    a:hover
+      text-decoration: none
+      h2
+        color: $link-hover-color
+
+.campaign-show
+  .entries
+    &:after
+      content: ''
+      display: block
+      clear: both
+    .entry
+      width: 200px
+      float: left
+      background-color: #f3e4d9
+      .details
+        padding: 0 5px
+        padding-top: 5px
+      .likes
+        font-weight: bold
+        .fa-heart
+          color: red

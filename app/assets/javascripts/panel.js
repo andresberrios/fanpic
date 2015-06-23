@@ -10,4 +10,6 @@
 //= require angular-devise
 //= require angular-ui-router
 //= require angular-rails-templates
+//= require masonry/dist/masonry.pkgd
+//= require imagesloaded/imagesloaded.pkgd
 //= require_tree ./angular

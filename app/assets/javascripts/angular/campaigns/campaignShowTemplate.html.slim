@@ -1,4 +1,4 @@
-.container ab-loading="!ctrl.campaign.$resolved"
+.campaign-show.container ab-loading="!ctrl.campaign.$resolved"
   h1.text-center
     | {{ctrl.campaign.name}}
     br
@@ -24,8 +24,13 @@
     strong
       | {{'#' + ctrl.campaign.hashtag}}
   div ab-loading="!ctrl.entries.$resolved"
-    ul.list-unstyled.row
-      li.col-sm-3 ng-repeat="entry in ctrl.entries"
-        img.img-thumbnail ng-src="{{entry.images.low_resolution.url}}"
-        p
-          | {{entry.caption.text}}
+    .entries ab-masonry=""
+      .entry ng-repeat="entry in ctrl.entries"
+        .text-center
+          img.img-responsive ng-src="{{entry.images.low_resolution.url}}"
+        .details
+          .likes
+            i.fa.fa-heart
+            |  {{entry.likes.count}} likes
+          p
+            | {{entry.caption.text}}
