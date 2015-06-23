@@ -6,7 +6,7 @@
       | {{'#' + ctrl.campaign.hashtag}}
   .text-center
     button.btn.btn-primary[
-      ng-if="ctrl.campaign.user_id == ctrl.user.id"
+      ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
       ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
       | Edit Campaign
   .row
