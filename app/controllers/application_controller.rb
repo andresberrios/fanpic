@@ -18,10 +18,16 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :null_session
   protect_from_forgery with: :exception
 
-  protected
+  # Auto log in when debugging in development environment
+  before_action :auto_login if Rails.env == 'development'
 
-  # Allow unverified requests in development
-  def verified_request?
-    super || (Rails.env == 'development' && request.headers['hola'] == 'true')
-  end
+  protected
+    # Allow unverified requests in development
+    def verified_request?
+      super || (Rails.env == 'development' && request.headers['hola'] == 'true')
+    end
+
+    def auto_login
+      sign_in User.find_by(role: 'admin') if Rails.env == 'development' && request.headers['hola'] == 'true'
+    end
 end
