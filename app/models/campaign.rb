@@ -11,6 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer
+#  tracking     :text(65535)
 #
 # Indexes
 #
@@ -19,4 +20,26 @@
 
 class Campaign < ActiveRecord::Base
   belongs_to :user
+
+  serialize :tracking, JSON
+
+  before_save do
+    self.tracking.each do |key, value|
+      value.delete_if { |tag| tag.strip.empty? }
+    end
+  end
+
+  validate :tracking_structure
+
+  protected
+    def tracking_structure
+      self.tracking.each do |key, value|
+        unless %w(hashtags usertags).include? key.to_s
+          errors.add :tracking, "has an invalid key: '#{key}'"
+        end
+        unless value.is_a? Array
+          errors.add :tracking, "has an invalid value in its '#{key}' key"
+        end
+      end
+    end
 end

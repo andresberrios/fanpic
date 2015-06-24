@@ -31,12 +31,13 @@ class Api::CampaignsController < ApplicationController
   end
 
   def entries
-    if @campaign.hashtag
-      entries = Instagram.client.tag_recent_media @campaign.hashtag
-      respond_with entries
-    else
-      respond_with []
+    entries = []
+    if @campaign.tracking['hashtags'].try(:any?)
+      @campaign.tracking['hashtags'].each do |hashtag|
+        entries.push *Instagram.client.tag_recent_media(hashtag)
+      end
     end
+    respond_with entries
   end
 
 
@@ -47,6 +48,6 @@ class Api::CampaignsController < ApplicationController
                   :description,
                   :image_url,
                   :requirements,
-                  :hashtag
+                  {tracking: [{hashtags: []}, {usertags: []}]}
   end
 end
