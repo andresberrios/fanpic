@@ -1,9 +1,9 @@
 .campaign-show.container ab-loading="!ctrl.campaign.$resolved"
   h1.text-center
     | {{ctrl.campaign.name}}
-    br
-    small
-      | {{'#' + ctrl.campaign.hashtag}}
+    br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+    small ng-repeat-end=""
+      | {{'#' + hashtag}}
   .text-center
     button.btn.btn-primary[
       ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
@@ -21,8 +21,9 @@
         | {{ctrl.campaign.requirements}}
   h2.text-center
     ' Entries in
-    strong
-      | {{'#' + ctrl.campaign.hashtag}}
+    br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+    small ng-repeat-end=""
+      | {{'#' + hashtag}}
   div ab-loading="!ctrl.entries.$resolved"
     .entries ab-masonry="" items="ctrl.entries"
       .entry ng-repeat="entry in ctrl.entries"

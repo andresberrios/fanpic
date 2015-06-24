@@ -23,3 +23,4 @@ angular.module 'App', [
       $stateProvider.state name, config
     $urlRouterProvider.otherwise '/not-found'
 ]
+.run -> Array::pull = (item) -> _.pull @, item

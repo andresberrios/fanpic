@@ -18,9 +18,33 @@
         .form-group
           label for="requirements" Requirements
           textarea#requirements.form-control ng-model="ctrl.campaign.requirements"
-        .form-group
-          label for="hashtag" Hashtag
-          input#hashtag.form-control ng-model="ctrl.campaign.hashtag"
+        fieldset
+          legend Tracking
+          .form-group
+            label Hashtags to look up
+            .input-group.input-group-sm[
+              ng-repeat="hashtag in ctrl.campaign.tracking.hashtags track by $index"]
+              span.input-group-btn
+                button.btn.btn-danger ng-click="ctrl.campaign.tracking.hashtags.splice($index, 1)"
+                  i.fa.fa-trash
+              input.form-control ng-model="ctrl.campaign.tracking.hashtags[$index]"
+            button.btn.btn-primary.btn-sm ng-click="ctrl.campaign.tracking.hashtags.push('')"
+              i.fa.fa-plus
+              |  Add Hashtag
+          .form-group
+            label
+              ' Required User Tags
+              small
+                | (filters entries found by hashtags)
+            .input-group.input-group-sm[
+              ng-repeat="usertag in ctrl.campaign.tracking.usertags track by $index"]
+              span.input-group-btn
+                button.btn.btn-danger ng-click="ctrl.campaign.tracking.usertags.splice($index, 1)"
+                  i.fa.fa-trash
+              input.form-control ng-model="ctrl.campaign.tracking.usertags[$index]"
+            button.btn.btn-primary.btn-sm ng-click="ctrl.campaign.tracking.usertags.push('')"
+              i.fa.fa-plus
+              |  Add User Tag
       .text-center
         button.btn.btn-success ng-click="ctrl.saveCampaign(ctrl.campaign)"
           i.fa.fa-floppy-o
