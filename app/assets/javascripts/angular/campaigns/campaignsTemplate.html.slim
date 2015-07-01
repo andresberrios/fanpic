@@ -10,6 +10,6 @@
             img.img-responsive ng-src="{{campaign.image_url}}"
           h2
             | {{campaign.name}}
-            br
-            small
-              | {{'#' + campaign.hashtag}}
+            br ng-repeat-start="hashtag in campaign.tracking.hashtags track by $index"
+            small ng-repeat-end=""
+              | {{'#' + hashtag}}

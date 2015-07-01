@@ -24,8 +24,10 @@ class Campaign < ActiveRecord::Base
   serialize :tracking, JSON
 
   before_save do
-    self.tracking.each do |key, value|
-      value.delete_if { |tag| tag.strip.empty? }
+    if self.tracking
+      self.tracking.each do |key, value|
+        value.delete_if { |tag| tag.strip.empty? }
+      end
     end
   end
 
@@ -33,12 +35,14 @@ class Campaign < ActiveRecord::Base
 
   protected
     def tracking_structure
-      self.tracking.each do |key, value|
-        unless %w(hashtags usertags).include? key.to_s
-          errors.add :tracking, "has an invalid key: '#{key}'"
-        end
-        unless value.is_a? Array
-          errors.add :tracking, "has an invalid value in its '#{key}' key"
+      if self.tracking
+        self.tracking.each do |key, value|
+          unless %w(hashtags usertags).include? key.to_s
+            errors.add :tracking, "has an invalid key: '#{key}'"
+          end
+          unless value.is_a? Array
+            errors.add :tracking, "has an invalid value in its '#{key}' key"
+          end
         end
       end
     end

@@ -28,7 +28,9 @@
                 button.btn.btn-danger ng-click="ctrl.campaign.tracking.hashtags.splice($index, 1)"
                   i.fa.fa-trash
               input.form-control ng-model="ctrl.campaign.tracking.hashtags[$index]"
-            button.btn.btn-primary.btn-sm ng-click="ctrl.campaign.tracking.hashtags.push('')"
+            button.btn.btn-primary.btn-sm[
+              ng-click="ctrl.campaign.tracking.hashtags = ctrl.campaign.tracking.hashtags || []; \
+                        ctrl.campaign.tracking.hashtags.push('')"]
               i.fa.fa-plus
               |  Add Hashtag
           .form-group
@@ -42,7 +44,9 @@
                 button.btn.btn-danger ng-click="ctrl.campaign.tracking.usertags.splice($index, 1)"
                   i.fa.fa-trash
               input.form-control ng-model="ctrl.campaign.tracking.usertags[$index]"
-            button.btn.btn-primary.btn-sm ng-click="ctrl.campaign.tracking.usertags.push('')"
+            button.btn.btn-primary.btn-sm[
+              ng-click="ctrl.campaign.tracking.usertags = ctrl.campaign.tracking.usertags || []; \
+                        ctrl.campaign.tracking.usertags.push('')"]
               i.fa.fa-plus
               |  Add User Tag
       .text-center
