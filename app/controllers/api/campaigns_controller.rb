@@ -32,9 +32,14 @@ class Api::CampaignsController < ApplicationController
 
   def entries
     entries = []
-    if @campaign.tracking['hashtags'].try(:any?)
+    if @campaign.tracking && @campaign.tracking['hashtags'].try(:any?)
       @campaign.tracking['hashtags'].each do |hashtag|
-        entries.push *Instagram.client.tag_recent_media(hashtag)
+        page = Instagram.client.tag_recent_media hashtag
+        entries.push *page
+        while page.pagination.next_max_tag_id
+          page = Instagram.client.tag_recent_media hashtag, max_tag_id: page.pagination.next_max_tag_id
+          entries.push *page
+        end
       end
     end
     respond_with entries
