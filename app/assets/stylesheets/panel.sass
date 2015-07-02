@@ -5,15 +5,8 @@
 @import "bootswatch"
 @import "font-awesome-sprockets"
 @import "font-awesome"
+@import "fanpic"
 
-.square-wrapper
-  width: 100%
-  display: inline-block
-  position: relative
-  &:after
-    padding-top: 100%
-    display: block
-    content: ''
 
 .campaigns
   .campaign-block
@@ -33,7 +26,7 @@
   .cover-holder
     position: relative
     background-color: black
-    height: 350px
+    height: 300px
     .cover-image
       position: absolute
       top: 0
@@ -44,7 +37,7 @@
       background-position: center
       opacity: 0.65
     .thumbnail-image-holder
-      margin-top: 50px
+      margin-top: 20px
       .thumbnail-image
         width: 100%
         position: absolute
@@ -52,6 +45,9 @@
         top: 0
         background-position: center
         background-size: cover
+  .description-holder
+    border-top: 1px solid #E4E4E4
+    border-bottom: 1px solid #E4E4E4
   .entries
     @include make-row(15px)
     &:after
@@ -64,12 +60,18 @@
         width: 100%
       margin-bottom: 15px
       .entry-content
-        background-color: #f3e4d9
+        background-color: #FFFFFF
+        border-radius: 6px
+        border: solid 1px
+        border-color: #E4E4E4
         img
           max-width: 100%
           height: auto
+          border-top-left-radius: 6px
+          border-top-right-radius: 6px
         .details
           padding: 5px
+          overflow: hidden
           .likes
             font-weight: bold
             .fa-heart
