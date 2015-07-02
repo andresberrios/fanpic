@@ -1,0 +1,26 @@
+// color palette
+
+$color-primary: #F26B21
+$color-secondary: #5E5E5E
+
+$color-background: #EFEFEF
+$color-background-alt: #FFFFFF
+
+$color-foreground: #000000
+
+
+// utility classes
+
+.bg
+  background-color: $color-background
+.bg-alt
+  background-color: $color-background-alt
+
+.square-wrapper
+  width: 100%
+  display: inline-block
+  position: relative
+  &:after
+    padding-top: 100%
+    display: block
+    content: ''
