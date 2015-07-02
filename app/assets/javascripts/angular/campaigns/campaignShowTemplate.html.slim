@@ -1,38 +1,51 @@
-.campaign-show.container ab-loading="!ctrl.campaign.$resolved"
-  h1.text-center
-    | {{ctrl.campaign.name}}
-    br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
-    small ng-repeat-end=""
-      | {{'#' + hashtag}}
-  .text-center
-    button.btn.btn-primary[
-      ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
-      ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
-      | Edit Campaign
-  .row
-    .col-sm-4.text-center
-      img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
-    .col-sm-8
-      h2 Description
+.campaign-show ab-loading="!ctrl.campaign.$resolved"
+  .cover-holder
+    .cover-image style="background-image: url('{{ctrl.campaign.cover_image_url}}')"
+    .container
+      .row
+        .col-lg-3.col-md-3.col-sm-5.hidden-xs
+          .square-wrapper.thumbnail-image-holder
+            .thumbnail-image.img-thumbnail style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"
+  .container
+    .text-center
+      img.img-thumbnail.visible-xs-inline-block ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+    h1.text-center
+      | {{ctrl.campaign.name}}
+      br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+      small ng-repeat-end=""
+        | {{'#' + hashtag}}
+      .text-center
+        button.btn.btn-primary[
+          ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
+          ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
+          | Edit Campaign
+    .details
+      h2 Descripción
       p
         | {{ctrl.campaign.description}}
-      h2 Requirements
+      h2 Requerimientos
       p
         | {{ctrl.campaign.requirements}}
-  h2.text-center
-    ' Entries in
-    br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
-    small ng-repeat-end=""
-      | {{'#' + hashtag}}
-  div ab-loading="!ctrl.entries.$resolved"
-    .entries ab-masonry="" items="ctrl.entries"
-      .entry ng-repeat="entry in ctrl.entries"
-        .entry-content
-          .text-center
-            img ng-src="{{entry.images.low_resolution.url}}"
-          .details
-            .likes
-              i.fa.fa-heart
-              |  {{entry.likes.count}} likes
-            p
-              | {{entry.caption.text}}
+      h2 Alcance
+      p
+        | Total de fanpics: {{ctrl.entries.length}}
+      p
+        i.fa.fa-heart
+        |  Total de likes: {{ctrl.totalLikes(ctrl.entries)}}
+    h2.text-center
+      ' Entries in
+      br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+      small ng-repeat-end=""
+        | {{'#' + hashtag}}
+    div ab-loading="!ctrl.entries.$resolved"
+      .entries ab-masonry="" items="ctrl.entries"
+        .entry ng-repeat="entry in ctrl.entries"
+          .entry-content
+            .text-center
+              img ng-src="{{entry.images.low_resolution.url}}"
+            .details
+              .likes
+                i.fa.fa-heart
+                |  {{entry.likes.count}} likes
+              p
+                | {{entry.caption.text}}

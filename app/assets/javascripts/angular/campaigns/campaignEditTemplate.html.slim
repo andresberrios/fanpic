@@ -4,6 +4,7 @@
   .row
     .col-sm-4.text-center
       img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+      img.img-thumbnail ng-src="{{ctrl.campaign.cover_image_url || '/img/no-image.png'}}"
     .col-sm-8
       form novalidate=""
         .form-group
@@ -15,6 +16,9 @@
         .form-group
           label for="image_url" Image URL
           input#image_url.form-control ng-model="ctrl.campaign.image_url"
+        .form-group
+          label for="cover_image_url" Cover Image URL
+          input#cover_image_url.form-control ng-model="ctrl.campaign.cover_image_url"
         .form-group
           label for="requirements" Requirements
           textarea#requirements.form-control ng-model="ctrl.campaign.requirements"

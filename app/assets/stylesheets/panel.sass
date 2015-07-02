@@ -6,6 +6,14 @@
 @import "font-awesome-sprockets"
 @import "font-awesome"
 
+.square-wrapper
+  width: 100%
+  display: inline-block
+  position: relative
+  &:after
+    padding-top: 100%
+    display: block
+    content: ''
 
 .campaigns
   .campaign-block
@@ -22,8 +30,30 @@
         color: $link-hover-color
 
 .campaign-show
+  .cover-holder
+    position: relative
+    background-color: black
+    height: 350px
+    .cover-image
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-size: cover
+      background-position: center
+      opacity: 0.65
+    .thumbnail-image-holder
+      margin-top: 50px
+      .thumbnail-image
+        width: 100%
+        position: absolute
+        bottom: 0
+        top: 0
+        background-position: center
+        background-size: cover
   .entries
-    @include make-row(15)
+    @include make-row(15px)
     &:after
       content: ''
       display: block
