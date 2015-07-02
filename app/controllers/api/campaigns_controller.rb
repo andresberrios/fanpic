@@ -34,6 +34,7 @@ class Api::CampaignsController < ApplicationController
     entries = []
     if @campaign.tracking && @campaign.tracking['hashtags'].try(:any?)
       @campaign.tracking['hashtags'].each do |hashtag|
+        # TODO Limit the amount of pages, maybe through a parameter, etc.
         page = Instagram.client.tag_recent_media hashtag
         entries.push *page
         while page.pagination.next_max_tag_id
