@@ -52,6 +52,7 @@ class Api::CampaignsController < ApplicationController
     params.permit :name,
                   :description,
                   :image_url,
+                  :cover_image_url,
                   :requirements,
                   {tracking: [{hashtags: []}, {usertags: []}]}
   end

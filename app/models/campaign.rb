@@ -2,16 +2,16 @@
 #
 # Table name: campaigns
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  description  :text(65535)
-#  image_url    :text(65535)
-#  requirements :text(65535)
-#  hashtag      :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :integer
-#  tracking     :text(65535)
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  description     :text(65535)
+#  image_url       :text(65535)
+#  requirements    :text(65535)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :integer
+#  tracking        :text(65535)
+#  cover_image_url :text(65535)
 #
 # Indexes
 #
