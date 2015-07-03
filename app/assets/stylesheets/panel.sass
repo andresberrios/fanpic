@@ -1,11 +1,11 @@
 
+@import "fanpic"
 @import "variables"
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import "bootswatch"
 @import "font-awesome-sprockets"
 @import "font-awesome"
-@import "fanpic"
 
 
 .campaigns
@@ -74,7 +74,23 @@
           overflow: hidden
           .likes
             font-weight: bold
-            .fa-heart
-              color: red
-          p
+            margin-top: 8px
             margin-bottom: 0
+            margin-right: 12px
+            margin-left: 12px
+            @media (max-width: $screen-xs-max)
+              margin-top: 8px
+              margin-bottom: 0
+              margin-right: 19px
+              margin-left: 19px
+          p
+            overflow: hidden
+            margin-top: 8px
+            margin-bottom: 12px
+            margin-right: 12px
+            margin-left: 12px
+            @media (max-width: $screen-xs-max)
+              margin-top: 8px
+              margin-bottom: 12px
+              margin-right: 19px
+              margin-left: 19px

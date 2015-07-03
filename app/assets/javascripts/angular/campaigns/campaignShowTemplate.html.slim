@@ -33,7 +33,7 @@
             p
               | Total de fanpics: {{ctrl.entries.length}}
             p
-              i.fa.fa-heart
+              i.fa.fa-heart.text-primary
               |  Total de likes: {{ctrl.totalLikes(ctrl.entries)}}
   .bg
     .container
@@ -50,7 +50,7 @@
                 img ng-src="{{entry.images.low_resolution.url}}"
               .details
                 .likes
-                  i.fa.fa-heart
+                  i.fa.fa-heart.text-primary
                   |  {{entry.likes.count}} likes
                 p
                   | {{entry.caption.text}}
