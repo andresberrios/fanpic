@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign_id: 
+  user_id: 
+  source: MyString
+  external_id: MyString
+
+two:
+  campaign_id: 
+  user_id: 
+  source: MyString
+  external_id: MyString

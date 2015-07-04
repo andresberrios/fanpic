@@ -31,6 +31,8 @@ gem 'slim-rails'
 # User Auth
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+# Active Model Serializers
+gem 'active_model_serializers'
 # Manage application configuration
 gem 'figaro'
 # Manage seed data

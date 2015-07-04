@@ -43,6 +43,11 @@ class Api::CampaignsController < ApplicationController
         end
       end
     end
+    entries = entries.map do |e|
+      entry = Entry.from_external 'instagram', e
+      entry.campaign = @campaign
+      entry
+    end
     respond_with entries
   end
 

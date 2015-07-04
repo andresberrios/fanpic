@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702021715) do
+ActiveRecord::Schema.define(version: 20150703210737) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(version: 20150702021715) do
   end
 
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "campaign_id",      limit: 4
+    t.integer  "user_id",          limit: 4
+    t.string   "media_type",       limit: 255
+    t.string   "source",           limit: 255
+    t.string   "external_id",      limit: 255
+    t.text     "external_data",    limit: 65535
+    t.string   "status",           limit: 255
+    t.text     "rejection_reason", limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "entries", ["campaign_id", "source", "external_id"], name: "index_entries_on_campaign_id_and_source_and_external_id", unique: true, using: :btree
+  add_index "entries", ["campaign_id"], name: "index_entries_on_campaign_id", using: :btree
+  add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -47,4 +64,6 @@ ActiveRecord::Schema.define(version: 20150702021715) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "campaigns", "users"
+  add_foreign_key "entries", "campaigns"
+  add_foreign_key "entries", "users"
 end
