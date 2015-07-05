@@ -64,6 +64,8 @@ gem 'spring', groups: [:development, :test]
 group :assets do
   # Use SCSS for stylesheets
   gem 'sass-rails', '~> 5.0'
+  # Autoprefixer Rails
+  gem "autoprefixer-rails"
   # Use Uglifier as compressor for JavaScript assets
   gem 'uglifier', '>= 1.3.0'
   # Use CoffeeScript for .coffee assets and views
