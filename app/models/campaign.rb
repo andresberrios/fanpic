@@ -21,6 +21,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :user
 
+  serialize :requirements, JSON
   serialize :tracking, JSON
 
   before_save do
@@ -29,9 +30,13 @@ class Campaign < ActiveRecord::Base
         value.delete_if { |tag| tag.strip.empty? }
       end
     end
+    if self.requirements
+      self.requirements.delete_if { |req| req.strip.empty? }
+    end
   end
 
   validate :tracking_structure
+  validate :requirements_structure
 
   protected
     def tracking_structure
@@ -44,6 +49,12 @@ class Campaign < ActiveRecord::Base
             errors.add :tracking, "has an invalid value in its '#{key}' key"
           end
         end
+      end
+    end
+
+    def requirements_structure
+      if self.requirements && !self.requirements.is_a?(Array)
+        errors.add :requirements, "should be an Array"
       end
     end
 end
