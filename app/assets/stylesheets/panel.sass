@@ -45,9 +45,28 @@
         top: 0
         background-position: center
         background-size: cover
-  .description-holder
+  .main-info-holder
     border-top: 1px solid #E4E4E4
     border-bottom: 1px solid #E4E4E4
+    .statistics-header
+      font-size: 13px
+      margin: 0
+    .statistics
+      font-size: 30px
+    .requirements
+      height: 200px
+    .fade-out
+      overflow: hidden
+      position: relative
+      height: 80px /* exactly three lines */
+      &:after
+        content: ""
+        position: absolute
+        bottom: 0
+        right: 0
+        left: 0
+        height: 80%
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%)
   .entries
     @include make-row(15px)
     &:after
@@ -69,6 +88,10 @@
           height: auto
           border-top-left-radius: 6px
           border-top-right-radius: 6px
+          opacity: 1
+          transition: 0.2s all
+          &:hover
+            opacity: 0.9
         .details
           padding: 5px
           overflow: hidden
@@ -94,3 +117,48 @@
               margin-bottom: 12px
               margin-right: 19px
               margin-left: 19px
+.entry-details-modal
+  .modal-body
+    .entry-image
+      border-radius: 6px
+    .content
+      position: relative
+      height: 414px
+      @media (max-width: $screen-sm-max)
+        height: auto
+        margin-top: 20px
+      .profile-image
+        width: 65px
+        @media (max-width: $screen-sm-max)
+          width: 55px
+      .likes
+        margin-bottom: 15px
+      p
+        overflow: hidden
+      .btn-block-container
+        width: 100%
+        margin: auto
+        bottom: 0
+        position: absolute
+        @media (max-width: $screen-sm-max)
+          margin-top: 45px
+          position: relative
+        .btn-block
+          @media (max-width: $screen-sm-max)
+            margin-top: 3px
+        .btn-block-left
+          padding-left: 0
+          padding-right: 3px
+          @media (max-width: $screen-sm-max)
+            padding-left: 0
+            padding-right: 0
+        .btn-block-right
+          padding-left: 3px
+          padding-right: 0
+          @media (max-width: $screen-sm-max)
+            padding-left: 0
+            padding-right: 0
+
+
+
+

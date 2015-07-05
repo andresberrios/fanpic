@@ -6,7 +6,7 @@
         .col-lg-3.col-md-3.col-sm-5.hidden-xs
           .square-wrapper.thumbnail-image-holder
             .thumbnail-image.img-thumbnail style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"
-  .description-holder.bg-alt
+  .main-info-holder.bg-alt
     .container
       .text-center
         img.img-thumbnail.visible-xs-inline-block ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
@@ -14,11 +14,22 @@
         .col-md-4
           h1
             | {{ctrl.campaign.name}}
-            br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
-            small ng-repeat-end=""
+            //br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+            //small ng-repeat-end=""
               | {{'#' + hashtag}}
-          p
-            | {{ctrl.campaign.description}}
+          hr
+          .row
+            .col-md-3
+              .statistics-header
+                | fanpics
+              .statistics.text-primary
+                | {{ctrl.entries.length}}
+            .col-md-3
+              .statistics-header
+                | likes
+              .statistics.text-primary
+                | {{ctrl.totalLikes(ctrl.entries)}}
+
           .text-center
             button.btn.btn-primary[
               ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
@@ -26,15 +37,15 @@
               | Edit Campaign
         .col-md-8
           .details
-            h2 Requerimientos
+            h1
+              | Descripción
+            hr
             p
-              | {{ctrl.campaign.requirements}}
-            h2 Alcance
-            p
-              | Total de fanpics: {{ctrl.entries.length}}
-            p
-              i.fa.fa-heart.text-primary
-              |  Total de likes: {{ctrl.totalLikes(ctrl.entries)}}
+              | {{ctrl.campaign.description}}
+            h3 Requerimientos
+            .requirements ng-click="shown = !shown" ng-class="{'fade-out': !shown}"
+              p
+                | {{ctrl.campaign.requirements}}
   .bg
     .container
       h2.text-center
@@ -46,7 +57,7 @@
         .entries ab-masonry="" items="ctrl.entries"
           .entry ng-repeat="entry in ctrl.entries"
             .entry-content
-              .text-center
+              .text-center ng-click="ctrl.showEntryDetails(entry)"
                 img ng-src="{{entry.images.low_resolution.url}}"
               .details
                 .likes

@@ -1,0 +1,33 @@
+.entry-details-modal
+  .modal-header
+    h3.modal-title I'm a modal!
+  .modal-body
+    .row
+      .col-md-6
+        img.img-responsive.entry-image ng-src="{{ctrl.entry.images.standard_resolution.url}}"
+      .col-md-6
+        .content
+          .row
+            .col-md-2.col-sm-2.col-xs-2
+              img.img-circle.profile-image ng-src="{{ctrl.entry.user.profile_picture}}"
+            .col-md-10.col-sm-10.col-xs-10
+              h1
+                | {{ctrl.entry.user.username}}
+          hr
+          .likes
+            i.fa.fa-heart.text-primary
+            |  {{ctrl.entry.likes.count}} likes
+          p
+            | {{ctrl.entry.caption.text}}
+          .row.btn-block-container
+            p
+              | ¿Cumple con los requisitos de tu campaña esta fanpic?
+            hr
+            .col-md-6.btn-block-left
+              button.btn.btn-primary.btn-lg.btn-block
+                | Si
+            .col-md-6.btn-block-right
+              button.btn.btn-default.btn-lg.btn-block
+                | No
+  .modal-footer
+
