@@ -29,22 +29,28 @@
                 | likes
               .statistics.text-primary
                 | {{ctrl.totalLikes(ctrl.entries)}}
-
-          .text-center
-            button.btn.btn-primary[
-              ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
-              ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
-              | Edit Campaign
+          a[
+            ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
+            ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
+            | Edit Campaign
         .col-md-8
           .details
             h1
-              | Descripción
+              | Requerimientos
             hr
             p
               | {{ctrl.campaign.description}}
-            h3 Requerimientos
             .requirements ng-click="shown = !shown" ng-class="{'fade-out': !shown}"
-              ol
+              h3 Hashtags requeridos
+              ul
+                li ng-repeat="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+                  | {{'#' + hashtag}}
+              h3 Tags de usuarios
+              ul
+                li ng-repeat="usertag in ctrl.campaign.tracking.usertags track by $index"
+                  | {{usertag}}
+              h3 Extra
+              ul
                 li ng-repeat="requirement in ctrl.campaign.requirements track by $index"
                   | {{requirement}}
   .bg
