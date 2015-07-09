@@ -21,7 +21,17 @@
           input#cover_image_url.form-control ng-model="ctrl.campaign.cover_image_url"
         .form-group
           label for="requirements" Requirements
-          textarea#requirements.form-control ng-model="ctrl.campaign.requirements"
+          .input-group.input-group-sm[
+            ng-repeat="requirement in ctrl.campaign.requirements track by $index"]
+            span.input-group-btn
+              button.btn.btn-danger ng-click="ctrl.campaign.requirements.splice($index, 1)"
+                i.fa.fa-trash
+            input.form-control ng-model="ctrl.campaign.requirements[$index]"
+          button.btn.btn-primary.btn-sm[
+            ng-click="ctrl.campaign.requirements = ctrl.campaign.requirements || []; \
+                      ctrl.campaign.requirements.push('')"]
+            i.fa.fa-plus
+            |  Add Requirement
         fieldset
           legend Tracking
           .form-group
