@@ -44,8 +44,9 @@
               | {{ctrl.campaign.description}}
             h3 Requerimientos
             .requirements ng-click="shown = !shown" ng-class="{'fade-out': !shown}"
-              p
-                | {{ctrl.campaign.requirements}}
+              ol
+                li ng-repeat="requirement in ctrl.campaign.requirements track by $index"
+                  | {{requirement}}
   .bg
     .container
       h2.text-center

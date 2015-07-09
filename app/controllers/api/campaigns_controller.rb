@@ -59,7 +59,7 @@ class Api::CampaignsController < ApplicationController
                   :description,
                   :image_url,
                   :cover_image_url,
-                  :requirements,
+                  {requirements: []},
                   {tracking: [{hashtags: []}, {usertags: []}]}
   end
 end
