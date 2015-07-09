@@ -54,18 +54,22 @@
     .statistics
       font-size: 30px
     .requirements
-      height: 200px
+      height: auto
+      margin-bottom: 30px
+      ul
+        padding-left: 16px
     .fade-out
       overflow: hidden
       position: relative
-      height: 80px /* exactly three lines */
+      height: 150px
+      margin-bottom: 0
       &:after
         content: ""
         position: absolute
         bottom: 0
         right: 0
         left: 0
-        height: 80%
+        height: 40%
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%)
   .entries
     @include make-row(15px)
@@ -158,6 +162,64 @@
           @media (max-width: $screen-sm-max)
             padding-left: 0
             padding-right: 0
+.signup
+  .logo
+    font-size: 20px
+    margin-left: 20px
+    margin-top: 10px
+  .signup-holder
+    position: relative
+    height: 700px
+    background-color: black
+    .image-holder
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-image: image-url("signup_background.png")
+      background-size: cover
+      background-position: center
+      height: 100%
+      opacity: 0.45
+    .signup-content
+      padding-top: 5%
+      .signup-form-container
+        background-color: $color-background-alt
+        border-radius: 6px
+        padding-top: 10px
+        padding-bottom: 10px
+        padding-left: 20px
+        padding-right: 20px
+        margin-bottom: 15px
+        opacity: 1 !important
+        .form-group
+          margin-bottom: 8px
+          input
+            height: 30px
+        button
+          margin-top: 8px
+          margin-bottom: 8px
+        .validation
+          margin-top: 8px
+          color: $color-primary
+          font-size: 10px
+        .animate-show
+          opacity: 1
+        .animate-show.ng-hide-add.ng-hide-add-active,
+        .animate-show.ng-hide-remove.ng-hide-remove-active
+          transition: all linear 0.7s
+        .animate-show.ng-hide
+          opacity: 0
+      .signup-text-container
+        h1
+          color: white
+          font-size: 40px
+        h2
+          color: white
+        p
+          color: #C3C3C3
+
 
 
 

@@ -1,0 +1,67 @@
+.signup
+  .nav.navbar.navbar-default
+    p.logo.fanpic-logo
+      | fanpic
+  .signup-holder
+    .image-holder
+    .signup-content
+      .container
+        .row
+          .col-md-4
+            .signup-form-container.clearfix
+              h2
+                | ¿Eres nuevo en fanpic?
+                .h3
+                  | Regístrate
+              hr
+                div
+                  form name="form" novalidate=""
+                    .form-group
+                      label for="name" Nombre
+                      input#name.form-control name="name" ng-model="ctrl.user.name" required=""
+                      .validation.animate-show ng-show="(form.$submitted || form.name.$touched) && form.name.$error.required"
+                        | No olvides ingresar tu nombre.
+                    .form-group
+                      label for="email" Email
+                      input#email.form-control name="email" type="email" ng-model="ctrl.user.email" required=""
+                      .validation.animate-show ng-show="(form.$submitted || form.email.$touched) && form.email.$error.required"
+                        | No olvides ingresar tu email.
+                      .validation.animate-show ng-show="(form.$submitted || form.email.$touched) && form.email.$error.email"
+                        | No es un email válido.
+                      .validation.animate-show ng-show="ctrl.email_taken"
+                        | Este email ya está en uso.
+                    .form-group
+                      label for="password" Password
+                      input#password.form-control name="password" type="password" ng-model="ctrl.user.password" required=""
+                      .validation.animate-show ng-show="(form.$submitted || form.password.$touched) && form.password.$error.required"
+                        | No olvides ingresar tu password.
+                      .validation.animate-show ng-show="(ctrl.user.password.length < 8) && \
+                                                        form.password.$dirty"
+                        | La password debe contener al menos 8 caracteres
+                    .form-group
+                      label for="password_confirmation" Confirma tu Password
+                      input#password_confirmation.form-control[
+                        name="password_confirmation"
+                        type="password"
+                        ng-model="ctrl.user.password_confirmation"
+                        required=""]
+                      .validation.animate-show ng-show="(form.$submitted || form.password_confirmation.$touched) && form.password_confirmation.$error.required"
+                        | No olvides confirmar tu password.
+                      .validation.animate-show ng-show="ctrl.user.password_confirmation != ctrl.user.password && \
+                                               form.password_confirmation.$dirty"
+                        | Las passwords no coinciden.
+                    button.btn.btn-primary.btn-sm.pull-right[
+                      type="submit"
+                      ng-click="ctrl.signUp(ctrl.user)"
+                      ng-disabled="form.$invalid || ctrl.user.password_confirmation != ctrl.user.password"]
+                      | Regístrate
+          .col-md-8
+            .signup-text-container
+              h1
+                ' Bienvenido a
+                span.fanpic-font fanpic
+                | !
+              h2
+                | Comienza a ser recompensado por compartir las cosas que amas.
+              p
+                | Una fanpic es una foto tuya con algún producto que te guste ¡Es tan simple como tomar tu fanpic, compartirla y comenzar a ganar increíbles premios!

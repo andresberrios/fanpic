@@ -1,5 +1,9 @@
 angular.module 'App.states', []
 .constant 'appStates',
+  signup:
+    url: '/panel/signup'
+    controller: 'UserSignUpCtrl as ctrl'
+    templateUrl: 'angular/users/signup/signUpTemplate.html'
   main:
     url: '/panel'
     abstract: yes
