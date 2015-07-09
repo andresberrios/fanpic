@@ -16,6 +16,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  role                   :string(255)
+#  name                   :string(255)
 #
 # Indexes
 #
@@ -34,6 +35,7 @@ class User < ActiveRecord::Base
   ROLES = %w(visitor advertiser admin)
 
   validates_inclusion_of :role, in: ROLES
+  validates_presence_of :name
 
   after_initialize :set_defaults
 
