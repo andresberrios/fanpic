@@ -38,3 +38,16 @@ $color-foreground: #000000
     padding-top: 100%
     display: block
     content: ''
+
+@keyframes annoying-zoom
+  50%
+    transform: scale(1.05)
+  100%
+    transform: scale(1.00)
+
+.annoying-zoom
+  animation-name: annoying-zoom
+  animation-duration: 10s
+  animation-delay: 2s
+  animation-iteration-count: infinite
+
