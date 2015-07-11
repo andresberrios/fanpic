@@ -22,7 +22,7 @@
       h2
         color: $link-hover-color
 
-.campaign-show
+.campaign-layout
   .cover-holder
     position: relative
     background-color: black
@@ -35,9 +35,12 @@
       bottom: 0
       background-size: cover
       background-position: center
-      opacity: 0.65
+      opacity: 0.45
     .thumbnail-image-holder
       margin-top: 20px
+      overflow: hidden
+      background-color: black
+      position: relative
       .thumbnail-image
         width: 100%
         position: absolute
@@ -45,9 +48,37 @@
         top: 0
         background-position: center
         background-size: cover
+        max-width: 100%
+      .text-container
+        position: absolute
+        z-index: 100
+        width: 100%
+        .image-text
+          color: white
+          font-size: 30px
+          margin-top: 20%
+    .name
+      font-size: 40px
+      color: white
+      margin-top: 20px
+    .description
+      font-size: 15px
+      color: white
   .main-info-holder
     border-top: 1px solid #E4E4E4
     border-bottom: 1px solid #E4E4E4
+    .thumbnail-image-holder
+      margin-top: 20px
+      overflow: hidden
+      background-color: black
+      position: relative
+      .thumbnail-image
+        width: 100%
+        position: absolute
+        bottom: 0
+        top: 0
+        background-position: center
+        background-size: cover
     .statistics-header
       font-size: 13px
       margin: 0

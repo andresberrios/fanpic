@@ -1,15 +1,29 @@
-.campaign-show ab-loading="!ctrl.campaign.$resolved"
-  .cover-holder
+.campaign-layout ab-loading="!ctrl.campaign.$resolved"
+  .cover-holder.hidden-xs
     .cover-image style="background-image: url('{{ctrl.campaign.cover_image_url}}')"
     .container
       .row
         .col-lg-3.col-md-3.col-sm-5.hidden-xs
-          .square-wrapper.thumbnail-image-holder
-            .thumbnail-image.img-thumbnail style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"
+          .square-wrapper.thumbnail-image-holder.img-thumbnail
+            .thumbnail-image.annoying-zoom[
+              style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"]
+            .text-container
+              //.image-text.text-center ng-if="ctrl.imageOver"
+                | TU IMAGEN
+                br
+                | DEBE VERSE
+                br
+                | COMO ESTA!
+        .col-lg-9.col-md-9.col-sm-7.hidden-xs
+          .name
+            | {{ctrl.campaign.name}}
+          .description
+            | {{ctrl.campaign.description}}
   .main-info-holder.bg-alt
     .container
-      .text-center
-        img.img-thumbnail.visible-xs-inline-block ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+      .square-wrapper.thumbnail-image-holder.img-thumbnail.visible-xs
+        .thumbnail-image.annoying-zoom[
+          style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"]
       .row
         .col-md-4
           h1
@@ -19,12 +33,12 @@
               | {{'#' + hashtag}}
           hr
           .row
-            .col-md-3
+            .col-md-3.col-xs-3
               .statistics-header
                 | fanpics
               .statistics.text-primary
                 | {{ctrl.entries.length}}
-            .col-md-3
+            .col-md-3.col-xs-3
               .statistics-header
                 | likes
               .statistics.text-primary
@@ -38,8 +52,6 @@
             h1
               | Requerimientos
             hr
-            p
-              | {{ctrl.campaign.description}}
             .requirements ng-click="shown = !shown" ng-class="{'fade-out': !shown}"
               h3 Hashtags requeridos
               ul
