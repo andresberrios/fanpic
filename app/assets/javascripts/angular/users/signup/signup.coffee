@@ -10,6 +10,7 @@ angular.module 'App.users.signup', []
         email: user.email
         password: user.password
         password_confimation: user.password_confirmation
+        name: user.name
       .then (registeredUser) =>
         @$state.go 'main.default'
       .catch (errors) =>

@@ -1,6 +1,9 @@
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
+  #Permit additional parameter username for devise
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   self.responder = ApplicationResponder
   respond_to :html, :json
 
@@ -29,5 +32,9 @@ class ApplicationController < ActionController::Base
 
     def auto_login
       sign_in User.find_by(role: 'admin') if Rails.env == 'development' && request.headers['hola'] == 'true'
+    end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) << :name
     end
 end
