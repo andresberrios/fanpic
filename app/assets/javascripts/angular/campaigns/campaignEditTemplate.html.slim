@@ -1,69 +1,77 @@
-.container
-  h1.text-center ng-if="ctrl.campaign.id" Edit Campaign
-  h1.text-center ng-if="!ctrl.campaign.id" New Campaign
-  .row
-    .col-sm-4.text-center
-      img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
-      img.img-thumbnail ng-src="{{ctrl.campaign.cover_image_url || '/img/no-image.png'}}"
-    .col-sm-8
-      form novalidate=""
-        .form-group
-          label for="name" Name
-          input#name.form-control ng-model="ctrl.campaign.name"
-        .form-group
-          label for="description" Description
-          textarea#description.form-control ng-model="ctrl.campaign.description"
-        .form-group
-          label for="image_url" Image URL
-          input#image_url.form-control ng-model="ctrl.campaign.image_url"
-        .form-group
-          label for="cover_image_url" Cover Image URL
-          input#cover_image_url.form-control ng-model="ctrl.campaign.cover_image_url"
-        .form-group
-          label for="requirements" Requirements
-          .input-group.input-group-sm[
-            ng-repeat="requirement in ctrl.campaign.requirements track by $index"]
-            span.input-group-btn
-              button.btn.btn-danger ng-click="ctrl.campaign.requirements.splice($index, 1)"
-                i.fa.fa-trash
-            input.form-control ng-model="ctrl.campaign.requirements[$index]"
-          button.btn.btn-primary.btn-sm[
-            ng-click="ctrl.campaign.requirements = ctrl.campaign.requirements || []; \
-                      ctrl.campaign.requirements.push('')"]
-            i.fa.fa-plus
-            |  Add Requirement
-        fieldset
-          legend Tracking
+.campaign-layout
+  .cover-holder
+    .cover-image style="background-image: url('{{ctrl.campaign.cover_image_url}}')"
+    .container
+      .row
+        .col-lg-3.col-md-3.col-sm-5.hidden-xs
+          .square-wrapper.thumbnail-image-holder
+            .thumbnail-image.img-thumbnail style="background-image: url('{{ctrl.campaign.image_url || '/img/no-image.png'}}');"
+  .container
+    h1.text-center ng-if="ctrl.campaign.id" Edit Campaign
+    h1.text-center ng-if="!ctrl.campaign.id" New Campaign
+    .row
+      .col-sm-4.text-center
+        img.img-thumbnail ng-src="{{ctrl.campaign.image_url || '/img/no-image.png'}}"
+        img.img-thumbnail ng-src="{{ctrl.campaign.cover_image_url || '/img/no-image.png'}}"
+      .col-sm-8
+        form novalidate=""
           .form-group
-            label Hashtags to look up
-            .input-group.input-group-sm[
-              ng-repeat="hashtag in ctrl.campaign.tracking.hashtags track by $index"]
-              span.input-group-btn
-                button.btn.btn-danger ng-click="ctrl.campaign.tracking.hashtags.splice($index, 1)"
-                  i.fa.fa-trash
-              input.form-control ng-model="ctrl.campaign.tracking.hashtags[$index]"
-            button.btn.btn-primary.btn-sm[
-              ng-click="ctrl.campaign.tracking.hashtags = ctrl.campaign.tracking.hashtags || []; \
-                        ctrl.campaign.tracking.hashtags.push('')"]
-              i.fa.fa-plus
-              |  Add Hashtag
+            label for="name" Name
+            input#name.form-control ng-model="ctrl.campaign.name"
           .form-group
-            label
-              ' Required User Tags
-              small
-                | (filters entries found by hashtags)
+            label for="description" Description
+            textarea#description.form-control ng-model="ctrl.campaign.description"
+          .form-group
+            label for="image_url" Image URL
+            input#image_url.form-control ng-model="ctrl.campaign.image_url"
+          .form-group
+            label for="cover_image_url" Cover Image URL
+            input#cover_image_url.form-control ng-model="ctrl.campaign.cover_image_url"
+          .form-group
+            label for="requirements" Requirements
             .input-group.input-group-sm[
-              ng-repeat="usertag in ctrl.campaign.tracking.usertags track by $index"]
+              ng-repeat="requirement in ctrl.campaign.requirements track by $index"]
               span.input-group-btn
-                button.btn.btn-danger ng-click="ctrl.campaign.tracking.usertags.splice($index, 1)"
+                button.btn.btn-danger ng-click="ctrl.campaign.requirements.splice($index, 1)"
                   i.fa.fa-trash
-              input.form-control ng-model="ctrl.campaign.tracking.usertags[$index]"
+              input.form-control ng-model="ctrl.campaign.requirements[$index]"
             button.btn.btn-primary.btn-sm[
-              ng-click="ctrl.campaign.tracking.usertags = ctrl.campaign.tracking.usertags || []; \
-                        ctrl.campaign.tracking.usertags.push('')"]
+              ng-click="ctrl.campaign.requirements = ctrl.campaign.requirements || []; \
+                        ctrl.campaign.requirements.push('')"]
               i.fa.fa-plus
-              |  Add User Tag
-      .text-center
-        button.btn.btn-success ng-click="ctrl.saveCampaign(ctrl.campaign)"
-          i.fa.fa-floppy-o
-          |  Save
+              |  Add Requirement
+          fieldset
+            legend Tracking
+            .form-group
+              label Hashtags to look up
+              .input-group.input-group-sm[
+                ng-repeat="hashtag in ctrl.campaign.tracking.hashtags track by $index"]
+                span.input-group-btn
+                  button.btn.btn-danger ng-click="ctrl.campaign.tracking.hashtags.splice($index, 1)"
+                    i.fa.fa-trash
+                input.form-control ng-model="ctrl.campaign.tracking.hashtags[$index]"
+              button.btn.btn-primary.btn-sm[
+                ng-click="ctrl.campaign.tracking.hashtags = ctrl.campaign.tracking.hashtags || []; \
+                          ctrl.campaign.tracking.hashtags.push('')"]
+                i.fa.fa-plus
+                |  Add Hashtag
+            .form-group
+              label
+                ' Required User Tags
+                small
+                  | (filters entries found by hashtags)
+              .input-group.input-group-sm[
+                ng-repeat="usertag in ctrl.campaign.tracking.usertags track by $index"]
+                span.input-group-btn
+                  button.btn.btn-danger ng-click="ctrl.campaign.tracking.usertags.splice($index, 1)"
+                    i.fa.fa-trash
+                input.form-control ng-model="ctrl.campaign.tracking.usertags[$index]"
+              button.btn.btn-primary.btn-sm[
+                ng-click="ctrl.campaign.tracking.usertags = ctrl.campaign.tracking.usertags || []; \
+                          ctrl.campaign.tracking.usertags.push('')"]
+                i.fa.fa-plus
+                |  Add User Tag
+        .text-center
+          button.btn.btn-success ng-click="ctrl.saveCampaign(ctrl.campaign)"
+            i.fa.fa-floppy-o
+            |  Save
