@@ -1,21 +1,3 @@
-//fonts import
-@import url("http://fonts.googleapis.com/css?family=Comfortaa")
-
-//fonts
-
-$font-family-comfortaa:  "Comfortaa"
-
-// color palette
-
-$color-primary: #F26B21
-$color-secondary: #5E5E5E
-
-$color-background: #EFEFEF
-$color-background-alt: #FFFFFF
-
-$color-foreground: #000000
-
-
 // utility classes
 
 .fanpic-font
@@ -40,14 +22,27 @@ $color-foreground: #000000
     content: ''
 
 @keyframes annoying-zoom
-  50%
-    transform: scale(1.05)
-  100%
+  0%
     transform: scale(1.00)
+  100%
+    transform: scale(1.05)
 
 .annoying-zoom
   animation-name: annoying-zoom
   animation-duration: 10s
-  animation-delay: 2s
   animation-iteration-count: infinite
+  animation-direction: alternate
 
+a:hover, a:active, a:focus
+  text-decoration: none
+
+.entry-accepted
+  background-color: $color-success
+  color: white
+
+.entry-rejected
+  background-color: $color-danger
+  color: white
+
+.standard-border-radius
+  border-radius: $standard-border-radius

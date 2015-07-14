@@ -1,12 +1,12 @@
 
-@import "fanpic"
+@import "fanpic-variables"
 @import "variables"
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import "bootswatch"
 @import "font-awesome-sprockets"
 @import "font-awesome"
-
+@import "fanpic"
 
 .campaigns
   .campaign-block
@@ -91,6 +91,7 @@
         padding-left: 16px
     .fade-out
       overflow: hidden
+      vertical-align: middle
       position: relative
       height: 150px
       margin-bottom: 0
@@ -102,6 +103,15 @@
         left: 0
         height: 40%
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%)
+  .filters
+    margin-left: 2px
+    margin-right: 2px
+    margin-top: 5px
+    margin-bottom: 10px
+    padding-left: 5px
+    padding-right: 5px
+    padding-top: 5px
+    padding-bottom: 5px
   .entries
     @include make-row(15px)
     &:after
@@ -127,6 +137,35 @@
           transition: 0.2s all
           &:hover
             opacity: 0.9
+            cursor: pointer
+        .entry-status
+          @include make-row(0px)
+          height: 25px
+          border-bottom: 1px solid #E4E4E4
+          &:hover
+            cursor: pointer
+          .status-btn
+            @include make-xs-column(6, 0px)
+            height: 100%
+            padding: auto
+            background-color: transparent
+            padding-top: 3px
+            transition: all linear 0.2s
+          .rejected
+            border-right: 1px solid #E4E4E4
+            &:hover
+              background-color: $color-danger
+              color: white
+            &:active
+              transition: all linear 0.05s
+              background-color: $color-danger-accent
+          .accepted
+            &:hover
+              background-color: $color-success
+              color: white
+            &:active
+              transition: all linear 0.05s
+              background-color: $color-success-accent
         .details
           padding: 5px
           overflow: hidden

@@ -67,17 +67,39 @@
                   | {{requirement}}
   .bg
     .container
-      h2.text-center
-        ' Entries in
-        br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
-        small ng-repeat-end=""
-          | {{'#' + hashtag}}
+      .row.filters.bg-alt.standard-border-radius
+        .col-md-3
+          select.form-control ng-model="ctrl.filter.status"
+            option value="" Todos
+            option value="accepted" Aceptadas
+            option value="rejected" Rechazadas
+            option value="unreviewed" Por revisar
+        .col-md-3
+          select.form-control
+            option Todos
+            option Aceptadas
+            option Rechazadas
+            option Por revisar
+      /h2.text-center
+      /  ' Entries in
+      /  br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
+      /  small ng-repeat-end=""
+      /    | {{'#' + hashtag}}
       div ab-loading="!ctrl.entries.$resolved"
-        .entries ab-masonry="" items="ctrl.entries"
-          .entry ng-repeat="entry in ctrl.entries"
-            .entry-content
+        .entries ab-masonry="" items="ctrl.filteredEntries()"
+          .entry ng-repeat="entry in ctrl.filteredEntries()"
+            .entry-content.standard-border-radius
               .text-center ng-click="ctrl.showEntryDetails(entry)"
                 img ng-src="{{entry.images.low_resolution.url}}"
+              .entry-status[
+                ng-class="{'entry-accepted': entry.status === 'accepted', \
+                           'entry-rejected': entry.status === 'rejected'}"]
+                .status-btn.text-center.rejected ng-click="ctrl.rejectEntry(entry)"
+                  span
+                    | rechazar
+                .status-btn.text-center.accepted ng-click="ctrl.acceptEntry(entry)"
+                  span
+                    | aceptar
               .details
                 .likes
                   i.fa.fa-heart.text-primary

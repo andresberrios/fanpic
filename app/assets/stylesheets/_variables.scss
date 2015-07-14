@@ -15,10 +15,10 @@ $gray-light:             #808080 !default;
 $gray-lighter:           #ddd !default;
 
 $brand-primary:         $color-primary;
-$brand-success:         #469408 !default;
+$brand-success:         $color-success;
 $brand-info:            #029ACF !default;
 $brand-warning:         #9B479F !default;
-$brand-danger:          #D9831F !default;
+$brand-danger:          $color-danger;
 
 
 //== Scaffolding
