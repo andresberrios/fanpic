@@ -129,7 +129,7 @@
         border: solid 1px
         border-color: #E4E4E4
         img
-          max-width: 100%
+          width: 100%
           height: auto
           border-top-left-radius: 6px
           border-top-right-radius: 6px
@@ -144,6 +144,8 @@
           border-bottom: 1px solid #E4E4E4
           &:hover
             cursor: pointer
+          @media (max-width: $screen-xs-max)
+            height: 50px
           .status-btn
             @include make-xs-column(6, 0px)
             height: 100%
@@ -151,6 +153,8 @@
             background-color: transparent
             padding-top: 3px
             transition: all linear 0.2s
+            @media (max-width: $screen-xs-max)
+              padding-top: 15px
           .rejected
             border-right: 1px solid #E4E4E4
             &:hover

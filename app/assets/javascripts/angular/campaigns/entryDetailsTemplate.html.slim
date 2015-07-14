@@ -28,9 +28,11 @@
             hr
             .col-md-6.btn-block-left
               button.btn.btn-danger.btn-lg.btn-block ng-click="ctrl.rejectEntry(ctrl.entry, $dismiss)"
-                | Rechazar
+                ' Rechazar
+                i.fa.fa-times
             .col-md-6.btn-block-right
               button.btn.btn-success.btn-lg.btn-block ng-click="ctrl.acceptEntry(ctrl.entry, $dismiss)"
-                | Aceptar
+                ' Aprobar
+                i.fa.fa-check
   .modal-footer
 

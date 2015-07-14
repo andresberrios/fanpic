@@ -95,11 +95,9 @@
                 ng-class="{'entry-accepted': entry.status === 'accepted', \
                            'entry-rejected': entry.status === 'rejected'}"]
                 .status-btn.text-center.rejected ng-click="ctrl.rejectEntry(entry)"
-                  span
-                    | rechazar
+                  i.fa.fa-times
                 .status-btn.text-center.accepted ng-click="ctrl.acceptEntry(entry)"
-                  span
-                    | aceptar
+                  i.fa.fa-check
               .details
                 .likes
                   i.fa.fa-heart.text-primary
