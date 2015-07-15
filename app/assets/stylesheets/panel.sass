@@ -8,20 +8,21 @@
 @import "font-awesome"
 @import "fanpic"
 
-.campaigns
-  .campaign-block
-    border: solid 1px lightgray
-    img
-      width: 100%
-    h2
-      margin-top: 6px
-      font-size: 160%
-      transition: color 0.6s
-    a:hover
-      text-decoration: none
-      h2
-        color: $link-hover-color
-
+.campaigns-index
+  .card-title
+    font-size: 17px
+    color: $gray
+    transition: all linear 0.2s
+    &:hover
+      color: $color-primary
+      cursor: pointer
+  .hashtags
+    fot-size: 8px
+    color: $gray-light
+    margin-top: 4px
+    margin-bottom: 4px
+    margin-right: 12px
+    margin-left: 12px
 .campaign-layout
   .cover-holder
     position: relative
@@ -124,8 +125,6 @@
         width: 100%
       margin-bottom: 15px
       .entry-content
-        background-color: #FFFFFF
-        border-radius: 6px
         border: solid 1px
         border-color: #E4E4E4
         img

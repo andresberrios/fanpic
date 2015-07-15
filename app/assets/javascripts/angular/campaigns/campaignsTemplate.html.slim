@@ -1,15 +1,21 @@
-.campaigns.container
+.campaigns-index.container
   h1.text-center
     ' Campaigns
     button.btn.btn-success ui-sref="main.campaignEdit({campaignId: 'new'})" New Campaign
-  ul.list-unstyled.row
-    li.col-sm-3 ng-repeat="campaign in ctrl.campaigns"
-      .campaign-block.text-center
-        a ui-sref="main.campaignShow({campaignId: campaign.id})"
-          div
+  .cards ab-masonry="" items="ctrl.campaigns"
+    .card ng-repeat="campaign in ctrl.campaigns"
+      .card-content.bg-alt.standard-border-radius
+        .card-img
+          a ui-sref="main.campaignShow({campaignId: campaign.id})"
             img.img-responsive ng-src="{{campaign.image_url}}"
-          h2
+        .card-details
+          .card-title ui-sref="main.campaignShow({campaignId: campaign.id})"
             | {{campaign.name}}
-            br ng-repeat-start="hashtag in campaign.tracking.hashtags track by $index"
-            small ng-repeat-end=""
+          .hashtags
+            small ng-repeat-start="hashtag in campaign.tracking.hashtags track by $index"
               | {{'#' + hashtag}}
+            br ng-repeat-end="" ng-if="!$last"
+          .card-description
+            | {{campaign.description}}
+        /.card-footer
+        /  .fa.fa-instagram
