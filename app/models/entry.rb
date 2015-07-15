@@ -28,12 +28,12 @@ class Entry < ActiveRecord::Base
   serialize :external_data, JsonMashCoder
 
   validates_inclusion_of :source, in: ['instagram']
-  validates_inclusion_of :status, in: ['unreviewed', 'accepted', 'rejected']
+  validates_inclusion_of :status, in: ['accepted', 'rejected']
   validates_inclusion_of :media_type, in: ['image', 'video']
   after_initialize :set_defaults
 
   def set_defaults
-    self.status ||= 'unreviewed'
+    self.status ||= 'accepted'
   end
 
   def self.from_external(source, data)

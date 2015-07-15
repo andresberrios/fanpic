@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     get '(*angular_route)', to: 'panel#index', constraints: lambda {|req| req.format == 'text/html'}
   end
 
-  scope 'api', module: 'api' do
+  namespace :api do
     resources :campaigns, except: [:new, :edit] do
-      get 'entries', on: :member
+      resources :entries, except: [:new, :edit]
     end
   end
 end
