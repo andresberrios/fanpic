@@ -1,7 +1,7 @@
 class Api::V1::EntriesController < Api::V1::BaseController
   respond_to :json
   load_and_authorize_resource :campaign
-  load_and_authorize_resource :entry, through: :campaign
+  load_and_authorize_resource :entry, through: :campaign, except: [:index, :create]
 
   def index
     @entries = []
@@ -39,11 +39,33 @@ class Api::V1::EntriesController < Api::V1::BaseController
     respond_with @entries
   end
 
+  def show
+    respond_with @entry
+  end
+
+  def create
+    data = Instagram.client.media_item params.require(:external_id)
+    @entry = Entry.from_external params.require(:source), data
+    @entry.assign_attributes entry_params
+    @entry.campaign = @campaign
+    authorize! :create, @entry
+    @entry.save
+    respond_with @entry
+  end
+
+  def update
+    @entry.update entry_params
+    respond_with @entry
+  end
+
+  def destroy
+    @entry.destroy
+    respond_with @entry
+  end
+
   private
     def entry_params
       params.permit :user_id,
-                    :source,
-                    :external_data,
                     :status,
                     :rejection_reason
     end

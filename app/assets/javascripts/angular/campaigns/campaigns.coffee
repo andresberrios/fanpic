@@ -38,11 +38,9 @@ angular.module 'App.campaigns', []
       else
         @entries
 
-    acceptEntry: (entry) ->
-      entry.status = 'accepted'
-
-    rejectEntry: (entry) ->
-      entry.status = 'rejected'
+    evaluateEntry: (entry, status) ->
+      entry.status = status
+      entry[if entry.id? then '$update' else '$save']()
 ]
 .controller 'CampaignEditCtrl', ['campaign', '$state'
   class CampaignEditCtrl
@@ -57,13 +55,10 @@ angular.module 'App.campaigns', []
   class EntryDetailsCtrl
     constructor: (@entry, @nextEntry) ->
 
-    acceptEntry: (entry, callback) ->
-      entry.status = 'accepted'
-      @goToNextEntry callback
-
-    rejectEntry: (entry, callback) ->
-      entry.status = 'rejected'
-      @goToNextEntry callback
+    evaluateEntry: (entry, status, callback) ->
+      entry.status = status
+      entry[if entry.id? then '$update' else '$save']().then =>
+        @goToNextEntry callback
 
     goToNextEntry: (callback) ->
       entry = @nextEntry()

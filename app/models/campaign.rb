@@ -20,10 +20,7 @@
 
 class Campaign < ActiveRecord::Base
   belongs_to :user
-
-  def entries
-    # Fake a has_many so that the controller handles the loading of entries
-  end
+  has_many :entries
 
   serialize :requirements, JSON
   serialize :tracking, JSON

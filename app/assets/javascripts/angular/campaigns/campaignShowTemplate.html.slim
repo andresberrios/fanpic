@@ -94,9 +94,9 @@
               .entry-status[
                 ng-class="{'entry-accepted': entry.status === 'accepted', \
                            'entry-rejected': entry.status === 'rejected'}"]
-                .status-btn.text-center.rejected ng-click="ctrl.rejectEntry(entry)"
+                .status-btn.text-center.rejected ng-click="ctrl.evaluateEntry(entry, 'rejected')"
                   i.fa.fa-times
-                .status-btn.text-center.accepted ng-click="ctrl.acceptEntry(entry)"
+                .status-btn.text-center.accepted ng-click="ctrl.evaluateEntry(entry, 'accepted')"
                   i.fa.fa-check
               .card-details
                 .likes
