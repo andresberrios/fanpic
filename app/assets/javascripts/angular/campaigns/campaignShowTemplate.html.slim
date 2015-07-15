@@ -14,11 +14,15 @@
                 | DEBE VERSE
                 br
                 | COMO ESTA!
-        .col-lg-9.col-md-9.col-sm-7.hidden-xs
+        .col-lg-9.col-md-9.col-sm-7.hidden-xs.right-column
           .name
             | {{ctrl.campaign.name}}
           .description
             | {{ctrl.campaign.description}}
+          .row
+            .col-sm-12.btns-container.text-right
+              .edit.fp-btn.text-center ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"
+                | Editar
   .main-info-holder.bg-alt
     .container
       .square-wrapper.thumbnail-image-holder.img-thumbnail.visible-xs
@@ -43,10 +47,6 @@
                 | likes
               .statistics.text-primary
                 | {{ctrl.totalLikes(ctrl.entries)}}
-          a[
-            ng-if="ctrl.campaign.user_id == ctrl.user.id || ctrl.user.role == 'admin'"
-            ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"]
-            | Edit Campaign
         .col-md-8
           .details
             h1

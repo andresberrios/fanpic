@@ -47,6 +47,19 @@ a:hover, a:active, a:focus
 .standard-border-radius
   border-radius: $standard-border-radius
 
+.fp-btn
+  border: 1px solid white
+  background-color: transparent
+  transition: all linear 0.2s
+  &:hover
+    background-color: $color-primary
+    color: white
+    cursor: pointer
+  &:active
+    background-color: $color-primary-accent
+    color: white
+    cursor: pointer
+
 // CARD
 .cards
   @include make-row(15px)
