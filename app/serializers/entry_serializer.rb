@@ -28,5 +28,6 @@ class EntrySerializer < ActiveModel::Serializer
              :status, :rejection_reason,
              :caption, :likes, :comments, :external_user,
              :images, :videos, :hashtags,
-             :link, :location, :external_created_at
+             :link, :location, :external_created_at,
+             :missing_usertags
 end

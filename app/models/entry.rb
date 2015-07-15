@@ -43,6 +43,29 @@ class Entry < ActiveRecord::Base
              external_data: data
   end
 
+  def missing_usertags
+    if @missing_usertags
+      @missing_usertags
+    else
+      @missing_usertags = []
+      if (usertags = self.campaign.tracking['usertags']) && (caption = self.caption)
+        caption = caption.text.downcase
+        usertags.each do |usertag|
+          base_string = "@#{usertag.downcase}"
+          included = false
+          [' ', "\n", '@', '#'].each do |char|
+            if caption.include?(base_string + char)
+              included = true
+              break
+            end
+          end
+          @missing_usertags.push usertag unless included
+        end
+      end
+      @missing_usertags
+    end
+  end
+
   def caption
     self.external_data.caption
   end

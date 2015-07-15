@@ -42,20 +42,40 @@ class Campaign < ActiveRecord::Base
   protected
     def tracking_structure
       if self.tracking
-        self.tracking.each do |key, value|
-          unless %w(hashtags usertags).include? key.to_s
-            errors.add :tracking, "has an invalid key: '#{key}'"
+        if self.tracking.is_a? Hash
+          self.tracking.each do |key, value|
+            unless %w(hashtags usertags).include? key.to_s
+              errors.add :tracking, "has an invalid key: '#{key}'"
+            end
+            if value.is_a? Array
+              value.each do |element|
+                unless element.is_a? String
+                  errors.add :tracking, "hashtags and usertags should contain only Strings"
+                  break
+                end
+              end
+            else
+              errors.add :tracking, "the '#{key}' field should be an Array"
+            end
           end
-          unless value.is_a? Array
-            errors.add :tracking, "has an invalid value in its '#{key}' key"
-          end
+        else
+          errors.add :tracking, "should be a Hash"
         end
       end
     end
 
     def requirements_structure
-      if self.requirements && !self.requirements.is_a?(Array)
-        errors.add :requirements, "should be an Array"
+      if self.requirements
+        if self.requirements.is_a?(Array)
+          self.requirements.each do |requirement|
+            unless requirement.is_a? String
+              errors.add :requirements, "should contain only Strings"
+              break
+            end
+          end
+        else
+          errors.add :requirements, "should be an Array"
+        end
       end
     end
 end

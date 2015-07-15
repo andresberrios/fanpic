@@ -24,14 +24,19 @@ class Api::V1::EntriesController < Api::V1::BaseController
         existing_entry = existing_entries.select do |e|
           e.external_id == external_entry.id && e.source == 'instagram'
         end.first
-        if existing_entry
-          existing_entry.external_data = external_entry
-          existing_entry
-        else
-          entry = Entry.from_external 'instagram', external_entry
-          entry.campaign = @campaign
-          entry
+        entry = if existing_entry
+                  existing_entry.external_data = external_entry
+                  existing_entry
+                else
+                  entry = Entry.from_external 'instagram', external_entry
+                  entry.campaign = @campaign
+                  entry
+                end
+        if entry.missing_usertags.any?
+          entry.status = 'rejected'
+          entry.rejection_reason = "Missing usertags: #{entry.missing_usertags.join(', ')}"
         end
+        entry
       end
       @entries.push *instagram
     end

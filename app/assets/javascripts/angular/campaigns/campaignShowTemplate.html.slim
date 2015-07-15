@@ -76,15 +76,7 @@
             option value="unreviewed" Por revisar
         .col-md-3
           select.form-control
-            option Todos
-            option Aceptadas
-            option Rechazadas
-            option Por revisar
-      /h2.text-center
-      /  ' Entries in
-      /  br ng-repeat-start="hashtag in ctrl.campaign.tracking.hashtags track by $index"
-      /  small ng-repeat-end=""
-      /    | {{'#' + hashtag}}
+            option Instagram
       div ab-loading="!ctrl.entries.$resolved"
         .cards ab-masonry="" items="ctrl.filteredEntries()"
           .card ng-repeat="entry in ctrl.filteredEntries()"
@@ -92,12 +84,19 @@
               .card-img.text-center ng-click="ctrl.showEntryDetails(entry)"
                 img ng-src="{{entry.images.low_resolution.url}}"
               .entry-status[
+                ng-if="!entry.missing_usertags || !entry.missing_usertags.length"
                 ng-class="{'entry-accepted': entry.status === 'accepted', \
                            'entry-rejected': entry.status === 'rejected'}"]
-                .status-btn.text-center.rejected ng-click="ctrl.evaluateEntry(entry, 'rejected')"
+                button.status-btn.text-center.rejected ng-click="ctrl.evaluateEntry(entry, 'rejected')"
                   i.fa.fa-times
-                .status-btn.text-center.accepted ng-click="ctrl.evaluateEntry(entry, 'accepted')"
+                button.status-btn.text-center.accepted ng-click="ctrl.evaluateEntry(entry, 'accepted')"
                   i.fa.fa-check
+              .missing-usertags.alert.alert-danger ng-if="entry.missing_usertags.length"
+                .text-center
+                  i.fa.fa-warning.fa-2x
+                ul
+                  li ng-repeat="usertag in entry.missing_usertags"
+                    | Falta @{{usertag}}
               .card-details
                 .likes
                   i.fa.fa-heart.text-primary
