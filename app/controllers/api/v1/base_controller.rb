@@ -1,4 +1,4 @@
-class Api::BaseController < ApplicationController
+class Api::V1::BaseController < ApplicationController
   respond_to :json
   self.responder = ApiResponder
 

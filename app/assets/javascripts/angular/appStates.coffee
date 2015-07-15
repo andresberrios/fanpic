@@ -29,8 +29,8 @@ angular.module 'App.states', []
       campaign: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
         Campaign.get id: $stateParams.campaignId
       ]
-      entries: ['Campaign', '$stateParams', (Campaign, $stateParams) ->
-        Campaign.entries id: $stateParams.campaignId
+      entries: ['Entry', '$stateParams', (Entry, $stateParams) ->
+        Entry.query campaignId: $stateParams.campaignId
       ]
       user: ['currentUser', (currentUser) -> currentUser()]
   'main.campaignEdit':

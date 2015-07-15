@@ -1,4 +1,4 @@
-class Api::EntriesController < Api::BaseController
+class Api::V1::EntriesController < Api::V1::BaseController
   respond_to :json
   load_and_authorize_resource :campaign
   load_and_authorize_resource :entry, through: :campaign
