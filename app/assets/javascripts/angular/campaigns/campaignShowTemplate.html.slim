@@ -86,10 +86,10 @@
       /  small ng-repeat-end=""
       /    | {{'#' + hashtag}}
       div ab-loading="!ctrl.entries.$resolved"
-        .entries ab-masonry="" items="ctrl.filteredEntries()"
-          .entry ng-repeat="entry in ctrl.filteredEntries()"
-            .entry-content.standard-border-radius
-              .text-center ng-click="ctrl.showEntryDetails(entry)"
+        .cards ab-masonry="" items="ctrl.filteredEntries()"
+          .card ng-repeat="entry in ctrl.filteredEntries()"
+            .card-content.bg-alt.standard-border-radius
+              .card-img.text-center ng-click="ctrl.showEntryDetails(entry)"
                 img ng-src="{{entry.images.low_resolution.url}}"
               .entry-status[
                 ng-class="{'entry-accepted': entry.status === 'accepted', \
@@ -98,9 +98,9 @@
                   i.fa.fa-times
                 .status-btn.text-center.accepted ng-click="ctrl.acceptEntry(entry)"
                   i.fa.fa-check
-              .details
+              .card-details
                 .likes
                   i.fa.fa-heart.text-primary
                   |  {{entry.likes.count}} likes
-                p
+                .card-description
                   | {{entry.caption.text}}

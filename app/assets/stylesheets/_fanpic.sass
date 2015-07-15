@@ -46,3 +46,60 @@ a:hover, a:active, a:focus
 
 .standard-border-radius
   border-radius: $standard-border-radius
+
+// CARD
+.cards
+  @include make-row(15px)
+  &:after
+    content: ''
+    display: block
+    clear: both
+  .card
+    @include make-sm-column(3, 15px)
+    @media (max-width: $screen-xs-max)
+      width: 100%
+    margin-bottom: 15px
+    .card-content
+      border: solid 1px
+      border-color: $gray-lighter
+      .card-img
+        img
+          width: 100%
+          height: auto
+          border-top-left-radius: 6px
+          border-top-right-radius: 6px
+          opacity: 1
+          transition: 0.2s all
+          &:hover
+            opacity: 0.9
+            cursor: pointer
+      .card-details
+        padding: 5px
+        overflow: hidden
+        .card-title
+          font-weight: bold
+          text-align: left
+          margin-top: 8px
+          margin-bottom: 0
+          margin-right: 12px
+          margin-left: 12px
+          @media (max-width: $screen-xs-max)
+            margin-top: 8px
+            margin-bottom: 0
+            margin-right: 19px
+            margin-left: 19px
+        .card-description
+          overflow: hidden
+          text-align: left
+          margin-top: 8px
+          margin-bottom: 12px
+          margin-right: 12px
+          margin-left: 12px
+          @media (max-width: $screen-xs-max)
+            margin-top: 8px
+            margin-bottom: 12px
+            margin-right: 19px
+            margin-left: 19px
+      .card-footer
+        border-top: solid 1px
+        border-color: $gray-lighter

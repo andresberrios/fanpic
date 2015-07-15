@@ -113,30 +113,9 @@
     padding-right: 5px
     padding-top: 5px
     padding-bottom: 5px
-  .entries
-    @include make-row(15px)
-    &:after
-      content: ''
-      display: block
-      clear: both
-    .entry
-      @include make-sm-column(3, 15px)
-      @media (max-width: $screen-xs-max)
-        width: 100%
-      margin-bottom: 15px
-      .entry-content
-        border: solid 1px
-        border-color: #E4E4E4
-        img
-          width: 100%
-          height: auto
-          border-top-left-radius: 6px
-          border-top-right-radius: 6px
-          opacity: 1
-          transition: 0.2s all
-          &:hover
-            opacity: 0.9
-            cursor: pointer
+  .cards
+    .card
+      .card-content
         .entry-status
           @include make-row(0px)
           height: 25px
@@ -169,9 +148,7 @@
             &:active
               transition: all linear 0.05s
               background-color: $color-success-accent
-        .details
-          padding: 5px
-          overflow: hidden
+        .card-details
           .likes
             font-weight: bold
             margin-top: 8px
@@ -181,17 +158,6 @@
             @media (max-width: $screen-xs-max)
               margin-top: 8px
               margin-bottom: 0
-              margin-right: 19px
-              margin-left: 19px
-          p
-            overflow: hidden
-            margin-top: 8px
-            margin-bottom: 12px
-            margin-right: 12px
-            margin-left: 12px
-            @media (max-width: $screen-xs-max)
-              margin-top: 8px
-              margin-bottom: 12px
               margin-right: 19px
               margin-left: 19px
 .entry-details-modal
@@ -292,6 +258,7 @@
           color: white
         p
           color: #C3C3C3
+
 
 
 
