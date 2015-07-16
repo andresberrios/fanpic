@@ -27,6 +27,7 @@ class Entry < ActiveRecord::Base
   belongs_to :user
 
   serialize :external_data, JsonMashCoder
+  serialize :unmet_requirements, JSON
 
   validates_inclusion_of :source, in: ['instagram']
   validates_inclusion_of :status, in: ['accepted', 'rejected']
