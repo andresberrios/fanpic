@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709013830) do
+ActiveRecord::Schema.define(version: 20150716194942) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -28,16 +28,16 @@ ActiveRecord::Schema.define(version: 20150709013830) do
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "campaign_id",      limit: 4
-    t.integer  "user_id",          limit: 4
-    t.string   "media_type",       limit: 255
-    t.string   "source",           limit: 255
-    t.string   "external_id",      limit: 255
-    t.text     "external_data",    limit: 65535
-    t.string   "status",           limit: 255
-    t.text     "rejection_reason", limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "campaign_id",        limit: 4
+    t.integer  "user_id",            limit: 4
+    t.string   "media_type",         limit: 255
+    t.string   "source",             limit: 255
+    t.string   "external_id",        limit: 255
+    t.text     "external_data",      limit: 65535
+    t.string   "status",             limit: 255
+    t.text     "unmet_requirements", limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "entries", ["campaign_id", "source", "external_id"], name: "index_entries_on_campaign_id_and_source_and_external_id", unique: true, using: :btree

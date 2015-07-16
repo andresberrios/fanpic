@@ -2,17 +2,17 @@
 #
 # Table name: entries
 #
-#  id               :integer          not null, primary key
-#  campaign_id      :integer
-#  user_id          :integer
-#  media_type       :string(255)
-#  source           :string(255)
-#  external_id      :string(255)
-#  external_data    :text(65535)
-#  status           :string(255)
-#  rejection_reason :text(65535)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                 :integer          not null, primary key
+#  campaign_id        :integer
+#  user_id            :integer
+#  media_type         :string(255)
+#  source             :string(255)
+#  external_id        :string(255)
+#  external_data      :text(65535)
+#  status             :string(255)
+#  unmet_requirements :text(65535)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 # Indexes
 #
