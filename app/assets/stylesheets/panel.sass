@@ -187,33 +187,47 @@
         width: 65px
         @media (max-width: $screen-sm-max)
           width: 55px
-      .likes
-        margin-bottom: 15px
-      p
-        overflow: hidden
-      .btn-block-container
-        width: 100%
-        margin: auto
-        bottom: 0
-        position: absolute
-        @media (max-width: $screen-sm-max)
-          margin-top: 45px
-          position: relative
-        .btn-block
+      .details
+        .likes
+          margin-bottom: 15px
+        p
+          overflow: hidden
+        .btn-block-container
+          width: 100%
+          margin: auto
+          bottom: 0
+          position: absolute
           @media (max-width: $screen-sm-max)
-            margin-top: 3px
-        .btn-block-left
-          padding-left: 0
-          padding-right: 3px
-          @media (max-width: $screen-sm-max)
+            margin-top: 45px
+            position: relative
+          .btn-block
+            @media (max-width: $screen-sm-max)
+              margin-top: 3px
+          .btn-block-left
             padding-left: 0
+            padding-right: 3px
+            @media (max-width: $screen-sm-max)
+              padding-left: 0
+              padding-right: 0
+          .btn-block-right
+            padding-left: 3px
             padding-right: 0
-        .btn-block-right
-          padding-left: 3px
-          padding-right: 0
-          @media (max-width: $screen-sm-max)
-            padding-left: 0
-            padding-right: 0
+            @media (max-width: $screen-sm-max)
+              padding-left: 0
+              padding-right: 0
+        .reasons
+          .reason
+            width: 100%
+            margin-bottom: 7px
+            background-color: $gray-lightest
+            transition: all linear 0.1s
+            &.active
+              background-color: $color-primary
+              color: white
+              &:hover, &:focus
+                color: white
+            &:hover, &:focus
+              color: $gray-light
 .signup
   .logo
     font-size: 20px

@@ -14,21 +14,22 @@ angular.module 'App.campaigns', []
         count += e.likes.count
       count
 
-    showEntryDetails: (entry) ->
+    showEntryDetails: (entry, requirements, rejecting = no) ->
       @$modal.open
         templateUrl: 'angular/campaigns/entryDetailsTemplate.html'
         controller: 'EntryDetailsCtrl as ctrl'
         size: 'lg'
         resolve:
           entry: -> entry
-          nextEntry: => =>
-            entries = _.filter @entries, status: 'unreviewed'
-            if entries.length isnt 0
-              index = entries.indexOf entry
+          requirements: -> requirements
+          rejecting: -> rejecting
+          nextEntry: => (entry) =>
+            if @entries.length isnt 0
+              index = @entries.indexOf entry
               if index is -1
-                entries[0]
+                @entries[0]
               else
-                entries[(index + 1) % entries.length]
+                @entries[(index + 1) % @entries.length]
             else
               return undefined
 
@@ -40,7 +41,10 @@ angular.module 'App.campaigns', []
 
     evaluateEntry: (entry, status) ->
       entry.status = status
-      entry[if entry.id? then '$update' else '$save']()
+      if entry.status is 'rejected'
+        @showEntryDetails entry, @campaign.requirements, yes
+      else
+        entry[if entry.id? then '$update' else '$save']()
 ]
 .controller 'CampaignEditCtrl', ['campaign', '$state'
   class CampaignEditCtrl
@@ -51,19 +55,51 @@ angular.module 'App.campaigns', []
       .then =>
         @$state.go 'main.campaigns'
 ]
-.controller 'EntryDetailsCtrl', ['entry', 'nextEntry'
+.controller 'EntryDetailsCtrl', ['entry', 'requirements', 'rejecting', 'nextEntry'
   class EntryDetailsCtrl
-    constructor: (@entry, @nextEntry) ->
+    constructor: (@entry, @requirements, @rejecting, @nextEntry) ->
+      @requirementsHash = {}
+      for requirement in @requirements
+        @requirementsHash[requirement] = no
 
     evaluateEntry: (entry, status, callback) ->
-      entry.status = status
-      entry[if entry.id? then '$update' else '$save']().then =>
-        @goToNextEntry callback
+      if status is 'rejected'
+        @rejecting = yes
+      else
+        entry.status = status
+        entry[if entry.id? then '$update' else '$save']().then =>
+          @goToNextEntry entry, callback
 
-    goToNextEntry: (callback) ->
-      entry = @nextEntry()
+    cancelRejection: ->
+      @cleanRequirementsHash()
+      @rejecting = no
+
+    rejectEntry: (entry, callback) ->
+      entry.status = 'rejected'
+      entry.unmet_requirements = (req for req, active of @requirementsHash when active)
+      entry[if entry.id? then '$update' else '$save']().then =>
+        @goToNextEntry entry, callback
+
+    goToNextEntry: (entry, callback) ->
+      entry = @nextEntry entry
       if entry?
+        @cleanRequirementsHash()
+        @rejecting = no
         @entry = entry
       else
         callback?()
+
+    selectReason: (requirement, active) ->
+      @requirementsHash[requirement] = not active
+
+    checkReasonSelected: ->
+      checked = no
+      for own requirement, active of @requirementsHash
+        if active
+          checked = yes
+      !checked
+
+    cleanRequirementsHash: ->
+      for own requirement, active of @requirementsHash
+        @requirementsHash[requirement] = no
 ]

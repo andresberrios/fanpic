@@ -17,24 +17,44 @@
                 a ng-href="{{ctrl.entry.link}}" target="_blank"
                   | {{ctrl.entry.external_user.username}}
           hr
-          .likes
-            i.fa.fa-heart.text-primary
-            |  {{ctrl.entry.likes.count}} likes
-          p
-            | {{ctrl.entry.caption.text}}
-          .row.btn-block-container
-            p
-              | ¿Cumple con los requisitos de tu campaña esta fanpic?
-            hr
-            .col-md-6.btn-block-left
-              button.btn.btn-danger.btn-lg.btn-block[
-                ng-click="ctrl.evaluateEntry(ctrl.entry, 'rejected', $dismiss)"]
-                ' Rechazar
-                i.fa.fa-times
-            .col-md-6.btn-block-right
-              button.btn.btn-success.btn-lg.btn-block[
-                ng-click="ctrl.evaluateEntry(ctrl.entry, 'accepted', $dismiss)"]
-                ' Aprobar
-                i.fa.fa-check
+          .details
+            div ng-if="!ctrl.rejecting"
+              .likes
+                i.fa.fa-heart.text-primary
+                |  {{ctrl.entry.likes.count}} likes
+              p
+                | {{ctrl.entry.caption.text}}
+              .row.btn-block-container
+                p
+                  | ¿Cumple con los requisitos de tu campaña esta fanpic?
+                hr
+                .col-md-6.btn-block-left
+                  button.btn.btn-danger.btn-lg.btn-block[
+                    ng-click="ctrl.evaluateEntry(ctrl.entry, 'rejected', $dismiss)"]
+                    ' Rechazar
+                    i.fa.fa-times
+                .col-md-6.btn-block-right
+                  button.btn.btn-success.btn-lg.btn-block[
+                    ng-click="ctrl.evaluateEntry(ctrl.entry, 'accepted', $dismiss)"]
+                    ' Aprobar
+                    i.fa.fa-check
+            .reasons ng-if="ctrl.rejecting"
+              p
+                | ¿Con cuales de los siguientes requisitos no cumple esta fanpic?
+              button.btn.reason[
+                ng-repeat="(requirement, active) in ctrl.requirementsHash track by $index"
+                ng-click="ctrl.selectReason(requirement, active)"
+                ng-class="{'active': active}"]
+                  | {{requirement}}
+              .row.btn-block-container
+                .col-md-6.btn-block-left
+                  button.btn.btn-default.btn-lg.btn-block[
+                    ng-click="ctrl.cancelRejection()"]
+                    | Cancelar
+                .col-md-6.btn-block-right
+                  button.btn.btn-primary.btn-lg.btn-block[
+                    ng-click="ctrl.rejectEntry(ctrl.entry, $dismiss)"
+                    ng-disabled="ctrl.checkReasonSelected()"]
+                    | Confirmar rechazo
   .modal-footer
 

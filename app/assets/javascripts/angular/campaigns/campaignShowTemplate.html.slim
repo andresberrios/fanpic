@@ -21,7 +21,7 @@
             | {{ctrl.campaign.description}}
           .row
             .col-sm-12.btns-container.text-right
-              .edit.fp-btn.text-center ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"
+              .edit.btn-fanpic.text-center ui-sref="main.campaignEdit({campaignId: ctrl.campaign.id})"
                 | Editar
   .main-info-holder.bg-alt
     .container
@@ -81,7 +81,7 @@
         .cards ab-masonry="" items="ctrl.filteredEntries()"
           .card ng-repeat="entry in ctrl.filteredEntries()"
             .card-content.bg-alt.standard-border-radius
-              .card-img.text-center ng-click="ctrl.showEntryDetails(entry)"
+              .card-img.text-center ng-click="ctrl.showEntryDetails(entry, ctrl.campaign.requirements)"
                 img ng-src="{{entry.images.low_resolution.url}}"
               .entry-status[
                 ng-if="!entry.missing_usertags || !entry.missing_usertags.length"
