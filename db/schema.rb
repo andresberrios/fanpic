@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716194942) do
+ActiveRecord::Schema.define(version: 20150716200400) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150716194942) do
     t.text     "unmet_requirements", limit: 65535
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.text     "rejection_message",  limit: 65535
   end
 
   add_index "entries", ["campaign_id", "source", "external_id"], name: "index_entries_on_campaign_id_and_source_and_external_id", unique: true, using: :btree

@@ -13,6 +13,7 @@
 #  unmet_requirements :text(65535)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  rejection_message  :text(65535)
 #
 # Indexes
 #
