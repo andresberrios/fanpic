@@ -34,7 +34,6 @@ class Api::V1::EntriesController < Api::V1::BaseController
                 end
         if entry.missing_usertags.any?
           entry.status = 'rejected'
-          entry.rejection_reason = "Missing usertags: #{entry.missing_usertags.join(', ')}"
         end
         entry
       end
@@ -72,6 +71,7 @@ class Api::V1::EntriesController < Api::V1::BaseController
     def entry_params
       params.permit :user_id,
                     :status,
-                    :rejection_reason
+                    :unmet_requirements,
+                    :rejection_message
     end
 end
