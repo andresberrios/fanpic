@@ -26,9 +26,9 @@ class EntrySerializer < ActiveModel::Serializer
   attributes :id, :campaign_id, :user_id,
              :created_at, :updated_at,
              :media_type, :source, :external_id,
-             :status, :rejection_reason,
+             :status, :unmet_requirements,
              :caption, :likes, :comments, :external_user,
              :images, :videos, :hashtags,
              :link, :location, :external_created_at,
-             :missing_usertags
+             :missing_usertags, :rejection_message
 end
